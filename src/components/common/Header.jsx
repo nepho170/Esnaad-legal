@@ -37,11 +37,11 @@ export default function Header() {
         scrolled
           ? "bg-stone-800/95 backdrop-blur-md h-24"
           : "bg-transparent h-32"
-      } `}
+      } overflow-x-hidden`}
       dir={isRTL ? "rtl" : "ltr"}
     >
       <div
-        className={`max-w-6xl mx-auto px-6 h-full flex items-center transition-all duration-500 ${
+        className={`max-w-6xl mx-auto px-2 sm:px-6 h-full flex items-center transition-all duration-500 ${
           !scrolled && isHomePage ? "text-white drop-shadow-lg" : "text-white"
         } ${isRTL ? "flex-row-reverse" : ""}`}
       >

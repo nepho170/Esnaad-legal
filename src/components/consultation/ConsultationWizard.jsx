@@ -44,29 +44,35 @@ const STEPS = [
 function StepIndicator({ currentStep, language, t }) {
   return (
     <div className="mb-8">
-      <div className="flex items-center justify-between mb-4">
-        {STEPS.map((step, index) => (
-          <div key={step.id} className="flex items-center">
-            <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                step.id < currentStep
-                  ? "bg-green-500 text-white"
-                  : step.id === currentStep
-                  ? "bg-primary text-white"
-                  : "bg-gray-200 text-gray-500"
-              }`}
-            >
-              {step.id < currentStep ? <Check className="w-4 h-4" /> : step.id}
-            </div>
-            {index < STEPS.length - 1 && (
+      <div className="w-full">
+        <div className="flex flex-wrap items-center justify-center gap-y-2 mb-4 px-2">
+          {STEPS.map((step, index) => (
+            <div key={step.id} className="flex items-center mb-2">
               <div
-                className={`h-1 w-8 md:w-12 mx-1 ${
-                  step.id < currentStep ? "bg-green-500" : "bg-gray-200"
+                className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs md:text-sm font-medium ${
+                  step.id < currentStep
+                    ? "bg-green-500 text-white"
+                    : step.id === currentStep
+                    ? "bg-primary text-white"
+                    : "bg-gray-200 text-gray-500"
                 }`}
-              />
-            )}
-          </div>
-        ))}
+              >
+                {step.id < currentStep ? (
+                  <Check className="w-3 h-3 md:w-4 md:h-4" />
+                ) : (
+                  step.id
+                )}
+              </div>
+              {index < STEPS.length - 1 && (
+                <div
+                  className={`h-1 w-4 md:w-8 mx-1 ${
+                    step.id < currentStep ? "bg-green-500" : "bg-gray-200"
+                  }`}
+                />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
       <div className="text-center">
         <h3 className="text-lg font-semibold text-gray-900">
