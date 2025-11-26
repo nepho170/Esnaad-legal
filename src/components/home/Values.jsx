@@ -83,8 +83,11 @@ export default function Values() {
           </h2>
         </div>
 
-        {/* Mobile: Horizontal scroll, Desktop: Grid */}
-        <div className="md:hidden overflow-x-auto pb-4">
+        {/* Mobile: Horizontal scroll only, Desktop: Grid */}
+        <div
+          className="md:hidden overflow-x-auto pb-4"
+          style={{ overflowY: "hidden" }}
+        >
           <div className="flex gap-6 px-4 -mx-4">
             {valueKeys.map((valueKey, index) => (
               <ValueCard key={valueKey} valueKey={valueKey} index={index} />

@@ -44,10 +44,10 @@ const STEPS = [
 function StepIndicator({ currentStep, language, t }) {
   return (
     <div className="mb-8">
-      <div className="w-full">
-        <div className="flex flex-wrap items-center justify-center gap-y-2 mb-4 px-2">
+      <div className="w-full overflow-x-auto scrollbar-hide">
+        <div className="flex items-center justify-center gap-y-2 mb-4 px-2 min-w-[340px] sm:min-w-0">
           {STEPS.map((step, index) => (
-            <div key={step.id} className="flex items-center mb-2">
+            <div key={step.id} className="flex items-center">
               <div
                 className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs md:text-sm font-medium ${
                   step.id < currentStep
