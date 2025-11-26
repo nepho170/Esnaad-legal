@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
+import heroImage from "/images/hero-section.webp";
 
 export default function Hero() {
   const { t, i18n } = useTranslation();
@@ -10,7 +11,7 @@ export default function Hero() {
   return (
     <section
       className="min-h-screen flex items-center justify-center text-white relative bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/images/hero-section.webp')" }}
+      style={{ backgroundImage: `url(${heroImage})` }}
     >
       {/* Dark transparent overlay */}
       <div className="absolute inset-0 bg-black/40"></div>

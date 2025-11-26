@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageToggle from "./LanguageToggle";
+import esnaadLogo from "/images/esnaad-logo.png";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +31,7 @@ export default function Header() {
             className="flex items-center hover:opacity-80 transition-opacity duration-200"
           >
             <img
-              src="/images/esnaad-logo.png"
+              src={esnaadLogo}
               alt="Esnaad Legal Consultancy"
               className="h-20 w-auto"
             />
