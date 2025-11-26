@@ -1,13 +1,16 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { sectors } from "../../utils/constants";
 import { motion } from "framer-motion";
 import * as LucideIcons from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 function SectorCard({ sector, language, index }) {
   const Icon = LucideIcons[sector.icon];
   const title = language === "ar" ? sector.titleAr : sector.titleEn;
-
+  const examples = language === "ar" ? sector.examplesAr : sector.examples;
+  const { t } = useTranslation();
+  const { lang } = useParams();
   return (
     <motion.div
       className="group relative bg-white p-8 border-l-4 border-primary/20 hover:border-gold shadow-sm hover:shadow-xl transition-all duration-500"
@@ -36,7 +39,7 @@ function SectorCard({ sector, language, index }) {
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {sector.examples.map((example, exampleIndex) => (
+            {examples.map((example, exampleIndex) => (
               <motion.div
                 key={exampleIndex}
                 className="flex items-center text-sm text-gray-600 group-hover:text-gray-800 transition-colors duration-300"
@@ -131,11 +134,28 @@ export default function Sectors() {
               </div>
 
               <div className="space-y-0">
-                {t("sectors.achievements.items", { returnObjects: true }).map(
-                  (item, index) => (
-                    <AchievementItem key={index} item={item} index={index} />
-                  )
-                )}
+                {(() => {
+                  try {
+                    const items = t("sectors.achievements.items", {
+                      returnObjects: true,
+                    });
+                    // Ensure items is an array
+                    if (Array.isArray(items)) {
+                      return items.map((item, index) => (
+                        <AchievementItem
+                          key={index}
+                          item={item}
+                          index={index}
+                        />
+                      ));
+                    }
+                    // Fallback if not an array
+                    return [];
+                  } catch (error) {
+                    console.error("Error loading achievements:", error);
+                    return [];
+                  }
+                })()}
               </div>
             </motion.div>
           </div>

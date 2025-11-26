@@ -643,6 +643,7 @@ export const team = [
 ];
 
 // Sectors data
+
 export const sectors = [
     {
         id: 'government',
@@ -652,6 +653,11 @@ export const sectors = [
             'Ministries',
             'Local Departments',
             'Abu Dhabi Municipality'
+        ],
+        examplesAr: [
+            'الوزارات',
+            'الدوائر المحلية',
+            'بلدية أبوظبي'
         ],
         icon: 'Landmark'
     },
@@ -664,6 +670,11 @@ export const sectors = [
             'Industrial Federations',
             'Professional Federations'
         ],
+        examplesAr: [
+            'الغرف التجارية',
+            'الاتحادات الصناعية',
+            'الاتحادات المهنية'
+        ],
         icon: 'Building2'
     },
     {
@@ -674,6 +685,11 @@ export const sectors = [
             'Industrial Companies',
             'Service Companies',
             'All Private Sectors'
+        ],
+        examplesAr: [
+            'الشركات الصناعية',
+            'شركات الخدمات',
+            'جميع القطاعات الخاصة'
         ],
         icon: 'Factory'
     }

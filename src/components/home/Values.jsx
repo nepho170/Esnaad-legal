@@ -14,13 +14,30 @@ function ValueCard({ valueKey, index }) {
   const Icon = valueIcons[valueKey];
   const isEven = index % 2 === 0;
 
+  const cardRef = React.useRef(null);
+  const [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    if (!cardRef.current) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(cardRef.current);
+    return () => observer.disconnect();
+  }, []);
   return (
     <div
-      className={`group p-8 rounded-xl transition-all duration-300 hover:scale-105 w-[280px] h-[280px] flex-shrink-0 flex flex-col ${
+      ref={cardRef}
+      className={`group p-8 rounded-xl transition-all duration-700 hover:scale-105 w-[280px] h-[280px] flex-shrink-0 flex flex-col ${
         isEven
           ? "bg-gray-50 hover:bg-white shadow-medium hover:shadow-large border border-gray-200 hover:border-primary/20"
           : "bg-gradient-to-br from-primary to-primary/90 text-white shadow-medium hover:shadow-large"
-      }`}
+      } ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
     >
       <div
         className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 flex-shrink-0 ${

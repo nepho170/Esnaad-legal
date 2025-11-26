@@ -9,11 +9,29 @@ function ServiceCard({ service, language }) {
   const title = language === "ar" ? service.titleAr : service.titleEn;
   const description =
     language === "ar" ? service.descriptionAr : service.descriptionEn;
-
+  const cardRef = React.useRef(null);
+  const [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    if (!cardRef.current) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(cardRef.current);
+    return () => observer.disconnect();
+  }, []);
   return (
     <Link
+      ref={cardRef}
       to={`/${language}/services/${service.id}`}
-      className="group bg-beige-50 hover:bg-white rounded-xl p-6 shadow-small hover:shadow-large transition-all duration-300 hover:-translate-y-2 border border-beige-200 hover:border-primary/30 w-[280px] h-[280px] flex-shrink-0 flex flex-col"
+      className={`group bg-beige-50 hover:bg-white rounded-xl p-6 shadow-small hover:shadow-large transition-all duration-700 hover:-translate-y-2 border border-beige-200 hover:border-primary/30 w-[280px] h-[280px] flex-shrink-0 flex flex-col ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
     >
       <div className="flex items-center mb-4">
         <div className="w-12 h-12 bg-primary/10 group-hover:bg-gold/20 rounded-lg flex items-center justify-center mr-4 transition-colors duration-300">

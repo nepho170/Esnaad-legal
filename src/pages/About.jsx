@@ -21,20 +21,20 @@ export default function About() {
   const { lng } = useParams();
   const currentLang = i18n.language || "en";
 
-  const teamCredentials = [
-    {
-      titleKey: "about.team.credentials.lawyers",
-    },
-    {
-      titleKey: "about.team.credentials.accredited",
-    },
-    {
-      titleKey: "about.team.credentials.expertise",
-    },
-    {
-      titleKey: "about.team.credentials.competence",
-    },
-  ];
+  // const teamCredentials = [
+  //   {
+  //     titleKey: "about.team.credentials.lawyers",
+  //   },
+  //   {
+  //     titleKey: "about.team.credentials.accredited",
+  //   },
+  //   {
+  //     titleKey: "about.team.credentials.expertise",
+  //   },
+  //   {
+  //     titleKey: "about.team.credentials.competence",
+  //   },
+  // ];
 
   const whyChooseUs = [
     {
@@ -70,10 +70,10 @@ export default function About() {
   ];
 
   const stats = [
-    { number: "2013", labelKey: "about.stats.founded", icon: Calendar },
-    { number: "12+", labelKey: "about.stats.experience", icon: Award },
-    { number: "500+", labelKey: "about.stats.clients", icon: Users },
-    { number: "95%", labelKey: "about.stats.successRate", icon: Target },
+    { number: "2014", labelKey: "about.stats.founded", icon: Calendar },
+    { number: "11+", labelKey: "about.stats.experience", icon: Award },
+    { number: "200+", labelKey: "about.stats.clients", icon: Users },
+    { number: "10", labelKey: "about.stats.government", icon: Target },
   ];
 
   return (

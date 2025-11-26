@@ -138,7 +138,7 @@
       "fileFormat": "PNG, JPG, PDF حتى 10MB",
       "referenceRequired": "رقم المرجع مطلوب"
     },
-    "step3": {
+    "step4": {
       "title": "حدد الوقت المناسب",
       "subtitle": "اختر التاريخ والوقت المناسب للاستشارة",
       "preferredDate": "التاريخ المفضل",
@@ -156,7 +156,7 @@
       "dateRequired": "التاريخ مطلوب",
       "timeRequired": "الوقت مطلوب"
     },
-    "step4": {
+    "step5": {
       "title": "طريقة الاستشارة",
       "subtitle": "اختر الطريقة المناسبة لك",
       "methods": {
@@ -175,7 +175,7 @@
       },
       "methodRequired": "طريقة الاستشارة مطلوبة"
     },
-    "step5": {
+    "step6": {
       "title": "مدة الاستشارة",
       "subtitle": "الباقة القياسية تشمل 4 جلسات، كل جلسة ساعة واحدة",
       "standardPackage": "الباقة القياسية",
@@ -190,7 +190,7 @@
       "packageTerms": "أوافق على شروط الباقة القياسية",
       "packageRequired": "يجب قبول الباقة"
     },
-    "step6": {
+    "step7": {
       "title": "التقرير المكتوب",
       "subtitle": "لك الحق في الحصول على تقرير مكتوب مفصل",
       "reportIncludes": "يشمل التقرير",
@@ -215,7 +215,7 @@
       },
       "languageRequired": "لغة التقرير مطلوبة"
     },
-    "step7": {
+    "step8": {
       "title": "الخصوصية والسرية",
       "subtitle": "نحافظ على أسرار العملاء ونحترم الفروق الفردية",
       "confidentialityAgreement": "اتفاقية السرية",
@@ -240,7 +240,7 @@
       "privacyRequired": "يجب قبول اتفاقية الخصوصية",
       "dataProtectionRequired": "يجب قبول سياسة حماية البيانات"
     },
-    "step8": {
+    "step9": {
       "title": "تأكيد الحجز",
       "subtitle": "مراجعة نهائية لتفاصيل الاستشارة",
       "bookingSummary": "ملخص الحجز",

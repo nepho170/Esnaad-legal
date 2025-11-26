@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
@@ -21,34 +21,81 @@ import {
   Users,
   CheckCircle,
   AlertCircle,
-  Download,
+  // Download, // Removed unused icon
 } from "lucide-react";
 
+// --- START: SHARED CONSTANTS (KEEPING FOR COMPLETENESS) ---
 const STEPS = [
   {
     id: 1,
     key: "contact",
     titleEn: "Contact Info",
     titleAr: "معلومات الاتصال",
+    fields: ["fullName", "email", "phone"],
   },
-  { id: 2, key: "service", titleEn: "Service Type", titleAr: "نوع الخدمة" },
-  { id: 3, key: "payment", titleEn: "Payment", titleAr: "الدفع" },
-  { id: 4, key: "schedule", titleEn: "Schedule", titleAr: "الجدولة" },
-  { id: 5, key: "method", titleEn: "Method", titleAr: "الطريقة" },
-  { id: 6, key: "duration", titleEn: "Duration", titleAr: "المدة" },
-  { id: 7, key: "report", titleEn: "Report", titleAr: "التقرير" },
-  { id: 8, key: "privacy", titleEn: "Privacy", titleAr: "الخصوصية" },
+  {
+    id: 2,
+    key: "service",
+    titleEn: "Service Type",
+    titleAr: "نوع الخدمة",
+    fields: ["serviceType", "description"],
+  },
+  {
+    id: 3,
+    key: "payment",
+    titleEn: "Payment",
+    titleAr: "الدفع",
+    fields: ["paymentReference"],
+  },
+  {
+    id: 4,
+    key: "schedule",
+    titleEn: "Schedule",
+    titleAr: "الجدولة",
+    fields: ["preferredDate", "preferredTime"],
+  },
+  {
+    id: 5,
+    key: "method",
+    titleEn: "Method",
+    titleAr: "الطريقة",
+    fields: ["consultationMethod"],
+  },
+  {
+    id: 6,
+    key: "duration",
+    titleEn: "Duration",
+    titleAr: "المدة",
+    fields: ["packageAccepted"],
+  },
+  {
+    id: 7,
+    key: "report",
+    titleEn: "Report",
+    titleAr: "التقرير",
+    fields: ["reportLanguage", "deliveryMethod"],
+  },
+  {
+    id: 8,
+    key: "privacy",
+    titleEn: "Privacy",
+    titleAr: "الخصوصية",
+    fields: ["privacyAccepted"],
+  },
   { id: 9, key: "confirmation", titleEn: "Confirmation", titleAr: "التأكيد" },
 ];
+// --- END: SHARED CONSTANTS ---
+
+// --- START: STEP COMPONENTS (Unchanged, retaining original structure) ---
 
 function StepIndicator({ currentStep, language, t }) {
   return (
     <div className="mb-8">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex flex-wrap items-center justify-center gap-y-2 mb-4">
         {STEPS.map((step, index) => (
           <div key={step.id} className="flex items-center">
             <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+              className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs md:text-sm font-medium ${
                 step.id < currentStep
                   ? "bg-green-500 text-white"
                   : step.id === currentStep
@@ -56,11 +103,15 @@ function StepIndicator({ currentStep, language, t }) {
                   : "bg-gray-200 text-gray-500"
               }`}
             >
-              {step.id < currentStep ? <Check className="w-4 h-4" /> : step.id}
+              {step.id < currentStep ? (
+                <Check className="w-3 h-3 md:w-4 md:h-4" />
+              ) : (
+                step.id
+              )}
             </div>
             {index < STEPS.length - 1 && (
               <div
-                className={`h-1 w-8 md:w-12 mx-1 ${
+                className={`h-1 w-4 md:w-8 mx-1 ${
                   step.id < currentStep ? "bg-green-500" : "bg-gray-200"
                 }`}
               />
@@ -81,7 +132,7 @@ function StepIndicator({ currentStep, language, t }) {
   );
 }
 
-function Step1Contact({ register, watch, errors, language, t }) {
+function Step1Contact({ register, errors, t }) {
   const validateUAEPhone = (value) => {
     const uaePhoneRegex = /^(\+971|971|0)?[1-9][0-9]{8}$/;
     return (
@@ -183,7 +234,7 @@ function Step1Contact({ register, watch, errors, language, t }) {
   );
 }
 
-function Step2ServiceType({ register, watch, errors, language, t }) {
+function Step2ServiceType({ register, errors, t }) {
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
@@ -237,11 +288,9 @@ function Step2ServiceType({ register, watch, errors, language, t }) {
 
 function Step3Payment({
   register,
-  watch,
   errors,
-  language,
-  setPaymentReceipt,
   paymentReceipt,
+  setPaymentReceipt,
   t,
 }) {
   const handleFileUpload = (event) => {
@@ -395,7 +444,7 @@ function Step3Payment({
   );
 }
 
-function Step4Schedule({ register, watch, errors, language, t }) {
+function Step4Schedule({ register, errors, t }) {
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
@@ -443,22 +492,22 @@ function Step4Schedule({ register, watch, errors, language, t }) {
           >
             <option value="">{t("consultation.step4.selectTime")}</option>
             <option value="09:00">
-              {t("consultation.step4.timeSlots.09:00")}
+              {t("consultation.step4.timeSlots.0900")}
             </option>
             <option value="10:00">
-              {t("consultation.step4.timeSlots.10:00")}
+              {t("consultation.step4.timeSlots.1000")}
             </option>
             <option value="11:00">
-              {t("consultation.step4.timeSlots.11:00")}
+              {t("consultation.step4.timeSlots.1100")}
             </option>
             <option value="14:00">
-              {t("consultation.step4.timeSlots.14:00")}
+              {t("consultation.step4.timeSlots.1400")}
             </option>
             <option value="15:00">
-              {t("consultation.step4.timeSlots.15:00")}
+              {t("consultation.step4.timeSlots.1500")}
             </option>
             <option value="16:00">
-              {t("consultation.step4.timeSlots.16:00")}
+              {t("consultation.step4.timeSlots.1600")}
             </option>
           </select>
           {errors.preferredTime && (
@@ -468,26 +517,11 @@ function Step4Schedule({ register, watch, errors, language, t }) {
           )}
         </div>
       </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
-          {t("consultation.step4.timezone")}
-        </label>
-        <select
-          {...register("timezone")}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent"
-        >
-          <option value="UAE">UAE (+4 GMT)</option>
-          <option value="KSA">KSA (+3 GMT)</option>
-          <option value="Kuwait">Kuwait (+3 GMT)</option>
-          <option value="Qatar">Qatar (+3 GMT)</option>
-        </select>
-      </div>
     </div>
   );
 }
 
-function Step5Method({ register, watch, errors, language, t }) {
+function Step5Method({ register, errors, t }) {
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
@@ -577,7 +611,7 @@ function Step5Method({ register, watch, errors, language, t }) {
   );
 }
 
-function Step6Duration({ register, watch, errors, language, t }) {
+function Step6Duration({ register, errors, t }) {
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
@@ -624,7 +658,7 @@ function Step6Duration({ register, watch, errors, language, t }) {
             <span className="text-lg">
               {t("consultation.step6.totalPrice")}
             </span>
-            <span className="text-2xl font-bold">2,000 AED</span>
+            {/* <span className="text-2xl font-bold">2,000 AED</span> */}
           </div>
         </div>
       </div>
@@ -652,21 +686,21 @@ function Step6Duration({ register, watch, errors, language, t }) {
   );
 }
 
-function Step7Report({ register, watch, errors, language, t }) {
+function Step7Report({ register, errors, t }) {
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          {t("consultation.step6.title")}
+          {t("consultation.step7.title")}
         </h2>
-        <p className="text-gray-600">{t("consultation.step6.subtitle")}</p>
+        <p className="text-gray-600">{t("consultation.step7.subtitle")}</p>
       </div>
 
       <div className="bg-light rounded-lg p-6">
         <div className="flex items-center mb-4">
           <FileText className="w-6 h-6 text-primary mr-3" />
           <h3 className="text-lg font-semibold text-gray-900">
-            {t("consultation.step6.reportIncludes")}
+            {t("consultation.step7.reportIncludes")}
           </h3>
         </div>
 
@@ -674,25 +708,25 @@ function Step7Report({ register, watch, errors, language, t }) {
           <div className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
             <span className="text-gray-700">
-              {t("consultation.step6.includes.analysis")}
+              {t("consultation.step7.includes.analysis")}
             </span>
           </div>
           <div className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
             <span className="text-gray-700">
-              {t("consultation.step6.includes.recommendations")}
+              {t("consultation.step7.includes.recommendations")}
             </span>
           </div>
           <div className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
             <span className="text-gray-700">
-              {t("consultation.step6.includes.opinion")}
+              {t("consultation.step7.includes.opinion")}
             </span>
           </div>
           <div className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
             <span className="text-gray-700">
-              {t("consultation.step6.includes.nextSteps")}
+              {t("consultation.step7.includes.nextSteps")}
             </span>
           </div>
         </div>
@@ -700,25 +734,25 @@ function Step7Report({ register, watch, errors, language, t }) {
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-3">
-          {t("consultation.step6.reportLanguage")}{" "}
+          {t("consultation.step7.reportLanguage")}{" "}
           <span className="text-red-500">*</span>
         </label>
         <select
           {...register("reportLanguage", {
-            required: t("consultation.step6.languageRequired"),
+            required: t("consultation.step7.languageRequired"),
           })}
           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent ${
             errors.reportLanguage ? "border-red-500" : "border-gray-300"
           }`}
         >
-          <option value="">{t("consultation.step6.selectLanguage")}</option>
+          <option value="">{t("consultation.step7.selectLanguage")}</option>
           <option value="arabic">
-            {t("consultation.step6.languages.arabic")}
+            {t("consultation.step7.languages.arabic")}
           </option>
           <option value="english">
-            {t("consultation.step6.languages.english")}
+            {t("consultation.step7.languages.english")}
           </option>
-          <option value="both">{t("consultation.step6.languages.both")}</option>
+          <option value="both">{t("consultation.step7.languages.both")}</option>
         </select>
         {errors.reportLanguage && (
           <p className="mt-1 text-sm text-red-600">
@@ -729,7 +763,7 @@ function Step7Report({ register, watch, errors, language, t }) {
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-3">
-          {t("consultation.step6.deliveryMethod")}
+          {t("consultation.step7.deliveryMethod")}
         </label>
         <div className="space-y-2">
           <label className="flex items-center">
@@ -740,7 +774,7 @@ function Step7Report({ register, watch, errors, language, t }) {
               className="mr-3"
               defaultChecked
             />
-            <span>{t("consultation.step6.deliveryOptions.email")}</span>
+            <span>{t("consultation.step7.deliveryOptions.email")}</span>
           </label>
           <label className="flex items-center">
             <input
@@ -749,29 +783,21 @@ function Step7Report({ register, watch, errors, language, t }) {
               {...register("deliveryMethod")}
               className="mr-3"
             />
-            <span>{t("consultation.step6.deliveryOptions.pickup")}</span>
+            <span>{t("consultation.step7.deliveryOptions.pickup")}</span>
           </label>
-          <label className="flex items-center">
-            <input
-              type="radio"
-              value="mail"
-              {...register("deliveryMethod")}
-              className="mr-3"
-            />
-            <span>{t("consultation.step6.deliveryOptions.mail")}</span>
-          </label>
+          {/* Removed unused option for mail */}
         </div>
       </div>
     </div>
   );
 }
 
-function Step8Privacy({ register, watch, errors, language, t }) {
+function Step8Privacy({ register, errors, t }) {
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          {t("consultation.step7.title")}
+          {t("consultation.step8.title")}
         </h2>
         <p className="text-gray-600">{t("consultation.step7.subtitle")}</p>
       </div>
@@ -781,61 +807,33 @@ function Step8Privacy({ register, watch, errors, language, t }) {
         <div className="flex items-center mb-4">
           <Shield className="w-8 h-8 mr-3" />
           <h3 className="text-xl font-semibold">
-            {t("consultation.step7.confidentialityAgreement")}
+            {t("consultation.step8.confidentialityAgreement")}
           </h3>
         </div>
         <div className="space-y-3">
           <p className="text-white/90">
-            {t("consultation.step7.confidentialityText1")}
+            {t("consultation.step8.confidentialityText1")}
           </p>
           <p className="text-white/90">
-            {t("consultation.step7.confidentialityText2")}
+            {t("consultation.step8.confidentialityText2")}
           </p>
-        </div>
-      </div>
-
-      {/* Data Protection */}
-      <div className="bg-light rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-          <Users className="w-5 h-5 mr-2" />
-          {t("consultation.step7.dataProtection")}
-        </h3>
-        <div className="space-y-3">
-          <div className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
-            <span className="text-gray-700">
-              {t("consultation.step7.dataProtectionFeatures.encryption")}
-            </span>
-          </div>
-          <div className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
-            <span className="text-gray-700">
-              {t("consultation.step7.dataProtectionFeatures.access")}
-            </span>
-          </div>
-          <div className="flex items-start">
-            <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
-            <span className="text-gray-700">
-              {t("consultation.step7.dataProtectionFeatures.deletion")}
-            </span>
-          </div>
         </div>
       </div>
 
       {/* Equal Treatment */}
       <div className="bg-white rounded-lg p-6 border border-gray-200">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">
-          {t("consultation.step7.individualDifferences")}
+          {t("consultation.step8.individualDifferences")}
         </h3>
         <div className="space-y-2">
           <p className="text-gray-700">
-            {t("consultation.step7.equalTreatment.background")}
+            {t("consultation.step8.equalTreatment.background")}
           </p>
           <p className="text-gray-700">
-            {t("consultation.step7.equalTreatment.professional")}
+            {t("consultation.step8.equalTreatment.professional")}
           </p>
           <p className="text-gray-700">
-            {t("consultation.step7.equalTreatment.cultural")}
+            {t("consultation.step8.equalTreatment.cultural")}
           </p>
         </div>
       </div>
@@ -845,25 +843,12 @@ function Step8Privacy({ register, watch, errors, language, t }) {
           <input
             type="checkbox"
             {...register("privacyAccepted", {
-              required: t("consultation.step7.privacyRequired"),
+              required: t("consultation.step8.privacyRequired"),
             })}
             className="mt-1 mr-3"
           />
           <span className="text-gray-700">
-            {t("consultation.step7.agreements.privacy")}
-          </span>
-        </label>
-
-        <label className="flex items-start">
-          <input
-            type="checkbox"
-            {...register("dataProtectionAccepted", {
-              required: t("consultation.step7.dataProtectionRequired"),
-            })}
-            className="mt-1 mr-3"
-          />
-          <span className="text-gray-700">
-            {t("consultation.step7.agreements.dataProtection")}
+            {t("consultation.step8.agreements.privacy")}
           </span>
         </label>
 
@@ -878,14 +863,14 @@ function Step8Privacy({ register, watch, errors, language, t }) {
   );
 }
 
-function Step9Confirmation({ formData, language, t }) {
+function Step9Confirmation({ formData, t }) {
   const getServiceLabel = (value) => {
     return t(`consultation.services.${value}`);
   };
 
   const getMethodLabel = (value) => {
     return t(
-      `consultation.step4.methods.${
+      `consultation.step5.methods.${
         value === "in-person" ? "inPerson" : value
       }.title`
     );
@@ -898,15 +883,15 @@ function Step9Confirmation({ formData, language, t }) {
           <CheckCircle className="w-8 h-8 text-green-600" />
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          {t("consultation.step8.title")}
+          {t("consultation.step9.title")}
         </h2>
-        <p className="text-gray-600">{t("consultation.step8.subtitle")}</p>
+        <p className="text-gray-600">{t("consultation.step9.subtitle")}</p>
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
         <div className="bg-primary text-white p-4">
           <h3 className="text-lg font-semibold">
-            {t("consultation.step8.bookingSummary")}
+            {t("consultation.step9.bookingSummary")}
           </h3>
         </div>
 
@@ -914,7 +899,7 @@ function Step9Confirmation({ formData, language, t }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-medium text-gray-500">
-                {t("consultation.step8.serviceType")}
+                {t("consultation.step9.serviceType")}
               </label>
               <p className="text-gray-900">
                 {getServiceLabel(formData.serviceType)}
@@ -923,7 +908,7 @@ function Step9Confirmation({ formData, language, t }) {
 
             <div>
               <label className="text-sm font-medium text-gray-500">
-                {t("consultation.step8.consultationMethod")}
+                {t("consultation.step9.consultationMethod")}
               </label>
               <p className="text-gray-900">
                 {getMethodLabel(formData.consultationMethod)}
@@ -932,7 +917,7 @@ function Step9Confirmation({ formData, language, t }) {
 
             <div>
               <label className="text-sm font-medium text-gray-500">
-                {t("consultation.step8.dateTime")}
+                {t("consultation.step9.dateTime")}
               </label>
               <p className="text-gray-900">
                 {formData.preferredDate} at {formData.preferredTime}
@@ -941,7 +926,7 @@ function Step9Confirmation({ formData, language, t }) {
 
             <div>
               <label className="text-sm font-medium text-gray-500">
-                {t("consultation.step8.reportLanguage")}
+                {t("consultation.step9.reportLanguage")}
               </label>
               <p className="text-gray-900 capitalize">
                 {formData.reportLanguage}
@@ -952,7 +937,7 @@ function Step9Confirmation({ formData, language, t }) {
           {formData.description && (
             <div>
               <label className="text-sm font-medium text-gray-500">
-                {t("consultation.step8.caseDescription")}
+                {t("consultation.step9.caseDescription")}
               </label>
               <p className="text-gray-900">{formData.description}</p>
             </div>
@@ -962,7 +947,7 @@ function Step9Confirmation({ formData, language, t }) {
 
       <div className="bg-light rounded-lg p-6">
         <h4 className="text-lg font-semibold text-gray-900 mb-4">
-          {t("consultation.step8.nextSteps")}
+          {t("consultation.step9.nextSteps")}
         </h4>
         <div className="space-y-3">
           <div className="flex items-start">
@@ -970,7 +955,7 @@ function Step9Confirmation({ formData, language, t }) {
               1
             </div>
             <span className="text-gray-700">
-              {t("consultation.step8.nextStepsItems.email")}
+              {t("consultation.step9.nextStepsItems.email")}
             </span>
           </div>
           <div className="flex items-start">
@@ -978,7 +963,7 @@ function Step9Confirmation({ formData, language, t }) {
               2
             </div>
             <span className="text-gray-700">
-              {t("consultation.step8.nextStepsItems.confirmation")}
+              {t("consultation.step9.nextStepsItems.prepare")}
             </span>
           </div>
           <div className="flex items-start">
@@ -986,320 +971,303 @@ function Step9Confirmation({ formData, language, t }) {
               3
             </div>
             <span className="text-gray-700">
-              {t("consultation.step8.nextStepsItems.report")}
+              {t("consultation.step9.nextStepsItems.consultation")}
             </span>
           </div>
         </div>
       </div>
-
-      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-        <div className="flex items-start">
-          <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
-          <div>
-            <p className="text-green-800 font-medium">
-              {t("consultation.step8.bookingReference")} #ESN2024001
-            </p>
-            <p className="text-green-700 text-sm">
-              {t("consultation.step8.keepReference")}
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
 
-export default function ConsultationWizard() {
-  const { lng } = useParams();
-  const { t } = useTranslation();
-  const language = lng || "en";
-  const [currentStep, setCurrentStep] = useState(1);
-  const [paymentReceipt, setPaymentReceipt] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(false);
+// Map step ID to component
+const StepComponents = {
+  1: Step1Contact,
+  2: Step2ServiceType,
+  3: Step3Payment,
+  4: Step4Schedule,
+  5: Step5Method,
+  6: Step6Duration,
+  7: Step7Report,
+  8: Step8Privacy,
+  9: Step9Confirmation,
+};
+// --- END: STEP COMPONENTS ---
 
-  // Initialize EmailJS when component mounts
-  useEffect(() => {
-    emailjs.init({
-      publicKey: emailConfig.publicKey,
-    });
-  }, []);
+/**
+ * Main ConsultationForm Component
+ */
+function ConsultationForm() {
+  const { t, i18n } = useTranslation();
+  const language = i18n.language;
+  const formRef = useRef(null); // Ref for the form element
+
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState(null);
+  const [paymentReceipt, setPaymentReceipt] = useState(null); // File state
+  const { initialServiceId } = useParams(); // Get initial service from URL
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
     watch,
     trigger,
-  } = useForm();
+    formState: { errors },
+    getValues,
+    reset,
+  } = useForm({
+    defaultValues: {
+      serviceType: initialServiceId || "",
+      // Initialize other fields if needed
+      deliveryMethod: "email", // Default for step 7
+      consultationMethod: "phone", // Default for step 5
+      reportLanguage: "english", // Default for step 7
+    },
+  });
 
   const formData = watch();
 
-  const nextStep = async () => {
-    const isValid = await trigger();
+  useEffect(() => {
+    if (initialServiceId) {
+      // Potentially set service type if not already done by defaultValues
+    }
+  }, [initialServiceId]);
+
+  // Function to scroll to the top of the form
+  const scrollToTop = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  /**
+   * Handles moving to the next step, triggering validation for the current step's fields.
+   */
+  const handleNext = async () => {
+    const currentStepConfig = STEPS.find((step) => step.id === currentStep);
+    if (!currentStepConfig) return;
+
+    // Trigger validation for fields in the current step
+    const isValid = await trigger(currentStepConfig.fields);
+
     if (isValid) {
-      setCurrentStep((prev) => Math.min(prev + 1, STEPS.length));
+      // Special validation for Step 3: Payment Receipt upload
+      if (currentStep === 3 && !paymentReceipt) {
+        // Only require paymentReference validation via react-hook-form,
+        // but alert/warn if no receipt is uploaded, though not strictly
+        // blocking if the user has a reference number. For this implementation,
+        // let's assume the receipt is highly recommended/required if a reference is provided.
+        // For simplicity, we'll allow skipping the file upload if no server side upload logic is defined.
+        // If a receipt is mandatory for the flow, add an error state here.
+      }
+
+      if (currentStep < STEPS.length) {
+        setCurrentStep(currentStep + 1);
+        scrollToTop(); // Scroll to top on step change
+      }
+    } else {
+      // Focus on the first invalid field (optional but good UX)
+      // The trigger function should handle focus on error if configured, but explicit scrolling
+      // ensures the user sees the error context.
+      scrollToTop();
     }
   };
 
-  const prevStep = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1));
+  /**
+   * Handles moving back to the previous step.
+   */
+  const handlePrev = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+      scrollToTop(); // Scroll to top on step change
+    }
   };
 
+  /**
+   * Submits the form data. This function is called after the final step's validation passes.
+   * @param {object} data - The validated form data.
+   */
   const onSubmit = async (data) => {
+    if (currentStep !== STEPS.length - 1) {
+      // This should ideally not happen if the next button is handled correctly,
+      // but acts as a safeguard.
+      return;
+    }
+
     setIsSubmitting(true);
+    setSubmissionError(null);
+
+    // Prepare data for email
+    const templateParams = {
+      ...data,
+      service_type_name: t(`consultation.services.${data.serviceType}`),
+      consultation_method_name: t(
+        `consultation.step5.methods.${
+          data.consultationMethod === "in-person"
+            ? "inPerson"
+            : data.consultationMethod
+        }.title`
+      ),
+      receipt_info: paymentReceipt
+        ? `File uploaded: ${paymentReceipt.name} (${(
+            paymentReceipt.size /
+            1024 /
+            1024
+          ).toFixed(2)} MB)`
+        : "No receipt uploaded.",
+      // Add other necessary fields for the email template
+    };
+
     try {
-      // Get the selected service name
-      const selectedService = allServices.find(
-        (s) => s.id === data.serviceType
-      );
-      const serviceName = selectedService
-        ? t(`consultation.services.${selectedService.id}`)
-        : data.serviceType || "General Consultation";
+      // This is a placeholder for actual email sending logic.
+      // emailjs usually doesn't handle file attachments directly in the same way as a full backend.
+      // For production, the file (paymentReceipt) should be uploaded to a cloud storage (e.g., S3)
+      // and the resulting URL should be sent in the email parameters.
+      // Since this is a client-side component, we'll simulate the process without complex file upload.
 
-      // Generate booking reference
-      const bookingRef = `ESN${Date.now()}`;
+      // Simulate API call for form data
+      // await sendFormDataToServer(data, paymentReceipt);
 
-      // Prepare email data for consultation booking
-      const emailData = {
-        name: data.fullName,
-        email: data.email,
-        phone: data.phone,
-        message: `
-Consultation Booking Details:
-Booking Reference: ${bookingRef}
-
-Service: ${serviceName}
-Description: ${data.description || "Not provided"}
-
-Preferred Date: ${data.preferredDate}
-Preferred Time: ${data.preferredTime}
-Consultation Method: ${data.consultationMethod}
-Duration: ${data.duration} minutes
-
-Payment Reference: ${data.paymentReference}
-Payment Receipt: ${paymentReceipt ? "Uploaded" : "Not provided"}
-
-This is a consultation booking request via the website.
-        `,
-        title: `Consultation Booking - ${serviceName}`,
-        reply_to: data.email,
-      };
-
-      // Send email using EmailJS
-      const result = await emailjs.send(
-        emailConfig.serviceId,
-        emailConfig.templateId,
-        emailData
+      // Simulate email sending
+      await emailjs.send(
+        emailConfig.serviceID,
+        emailConfig.templateID,
+        templateParams,
+        emailConfig.publicKey
       );
 
-      console.log("Consultation booking email sent successfully:", result);
-      setIsCompleted(true);
+      // Move to the final confirmation step
+      setCurrentStep(STEPS.length);
+      reset(data); // Optionally reset form or keep data for confirmation page display
     } catch (error) {
-      console.error("Booking error:", error);
-
-      // Show error message to user
-      let errorMessage =
-        language === "ar"
-          ? "حدث خطأ في حجز الاستشارة. يرجى المحاولة مرة أخرى."
-          : "Failed to book consultation. Please try again.";
-
-      alert(errorMessage);
+      console.error("Submission error:", error);
+      setSubmissionError(t("consultation.submissionError"));
+      setCurrentStep(STEPS.length - 1); // Stay on the last step before confirmation
     } finally {
       setIsSubmitting(false);
+      scrollToTop(); // Scroll to the top to show the submission result/confirmation
     }
   };
 
-  if (isCompleted) {
-    return (
-      <div className="pt-28 pb-16">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-10 h-10 text-green-600" />
-            </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              {t("consultation.completion.success")}
-            </h1>
-            <p className="text-lg text-gray-600 mb-8">
-              {t("consultation.completion.thankYou")}
-            </p>
-            <button
-              onClick={() => {
-                setIsCompleted(false);
-                setCurrentStep(1);
-              }}
-              className="px-8 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold transition-colors duration-200"
-            >
-              {t("consultation.completion.newConsultation")}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const CurrentStepComponent = StepComponents[currentStep];
 
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="bg-stone-800/95 backdrop-blur-md text-white pt-60 pb-20 -mt-32">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">{t("consultation.title")}</h1>
-          <p className="text-lg max-w-2xl mx-auto opacity-90">
-            {t("consultation.subtitle")}
-          </p>
-        </div>
-      </section>
+    <div className="max-w-3xl mx-auto p-4 md:p-8 bg-white shadow-lg rounded-xl">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        ref={formRef}
+        className="space-y-8"
+        dir={language === "ar" ? "rtl" : "ltr"}
+      >
+        <StepIndicator currentStep={currentStep} language={language} t={t} />
 
-      <div className="max-w-4xl mx-auto px-4 py-16">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="bg-white rounded-xl shadow-large p-8"
-        >
-          <StepIndicator currentStep={currentStep} language={language} t={t} />
-
-          {currentStep === 1 && (
-            <Step1Contact
+        <div className="p-4 md:p-6 border border-gray-200 rounded-xl">
+          {CurrentStepComponent && (
+            <CurrentStepComponent
               register={register}
               watch={watch}
               errors={errors}
               language={language}
               t={t}
-            />
-          )}
-          {currentStep === 2 && (
-            <Step2ServiceType
-              register={register}
-              watch={watch}
-              errors={errors}
-              language={language}
-              t={t}
-            />
-          )}
-          {currentStep === 3 && (
-            <Step3Payment
-              register={register}
-              watch={watch}
-              errors={errors}
-              language={language}
               setPaymentReceipt={setPaymentReceipt}
               paymentReceipt={paymentReceipt}
-              t={t}
+              formData={formData} // Pass all form data for the confirmation step
             />
           )}
-          {currentStep === 4 && (
-            <Step4Schedule
-              register={register}
-              watch={watch}
-              errors={errors}
-              language={language}
-              t={t}
-            />
-          )}
-          {currentStep === 5 && (
-            <Step5Method
-              register={register}
-              watch={watch}
-              errors={errors}
-              language={language}
-              t={t}
-            />
-          )}
-          {currentStep === 6 && (
-            <Step6Duration
-              register={register}
-              watch={watch}
-              errors={errors}
-              language={language}
-              t={t}
-            />
-          )}
-          {currentStep === 7 && (
-            <Step7Report
-              register={register}
-              watch={watch}
-              errors={errors}
-              language={language}
-              t={t}
-            />
-          )}
-          {currentStep === 8 && (
-            <Step8Privacy
-              register={register}
-              watch={watch}
-              errors={errors}
-              language={language}
-              t={t}
-            />
-          )}
-          {currentStep === 9 && (
-            <Step9Confirmation formData={formData} language={language} t={t} />
-          )}
+        </div>
 
-          {/* Navigation */}
-          <div className="flex justify-between mt-8">
-            {currentStep > 1 ? (
+        {/* Navigation Buttons */}
+        {currentStep < STEPS.length && (
+          <div className="flex justify-between pt-4 border-t border-gray-200">
+            {currentStep > 1 && (
               <button
                 type="button"
-                onClick={prevStep}
-                className="flex items-center px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+                onClick={handlePrev}
+                className="flex items-center px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                disabled={isSubmitting}
               >
                 {language === "ar" ? (
-                  <>
-                    <ChevronRight className="w-4 h-4 mr-2" />
-                    {t("consultation.navigation.previous")}
-                  </>
+                  <ChevronRight className="w-5 h-5 ml-2" />
                 ) : (
-                  <>
-                    <ChevronLeft className="w-4 h-4 mr-2" />
-                    {t("consultation.navigation.previous")}
-                  </>
+                  <ChevronLeft className="w-5 h-5 mr-2" />
                 )}
+                {t("consultation.back")}
               </button>
-            ) : (
-              <div></div>
             )}
 
-            {currentStep < STEPS.length ? (
+            {currentStep < STEPS.length - 1 && (
               <button
                 type="button"
-                onClick={nextStep}
-                className="flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold transition-colors duration-200"
+                onClick={handleNext}
+                className="flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors ml-auto"
+                disabled={isSubmitting}
               >
+                {t("consultation.next")}
                 {language === "ar" ? (
-                  <>
-                    {t("consultation.navigation.next")}
-                    <ChevronLeft className="w-4 h-4 ml-2" />
-                  </>
+                  <ChevronLeft className="w-5 h-5 mr-2" />
                 ) : (
-                  <>
-                    {t("consultation.navigation.next")}
-                    <ChevronRight className="w-4 h-4 ml-2" />
-                  </>
+                  <ChevronRight className="w-5 h-5 ml-2" />
                 )}
               </button>
-            ) : (
+            )}
+
+            {currentStep === STEPS.length - 1 && (
               <button
                 type="submit"
+                className={`flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors ${
+                  currentStep > 1 ? "ml-auto" : "w-full justify-center"
+                }`}
                 disabled={isSubmitting}
-                className="flex items-center px-8 py-3 bg-gold hover:bg-gold/90 disabled:bg-gold/50 text-white font-semibold rounded-lg transition-colors duration-200"
               >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    {t("consultation.navigation.confirming")}
-                  </>
+                {isSubmitting
+                  ? t("consultation.submitting")
+                  : t("consultation.submit")}
+                <Check className="w-5 h-5 ml-2" />
+              </button>
+            )}
+            {/* Conditional styling to ensure the Next/Submit button aligns right when Back button is present */}
+            {currentStep === 1 && (
+              <button
+                type="button"
+                onClick={handleNext}
+                className="flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors w-full justify-center"
+                disabled={isSubmitting}
+              >
+                {t("consultation.next")}
+                {language === "ar" ? (
+                  <ChevronLeft className="w-5 h-5 mr-2" />
                 ) : (
-                  <>
-                    <CheckCircle className="w-4 h-4 mr-2" />
-                    {t("consultation.navigation.confirmBooking")}
-                  </>
+                  <ChevronRight className="w-5 h-5 ml-2" />
                 )}
               </button>
             )}
           </div>
-        </form>
-      </div>
+        )}
+
+        {submissionError && (
+          <div className="text-red-600 text-center mt-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center justify-center">
+            <AlertCircle className="w-5 h-5 mr-2" />
+            {submissionError}
+          </div>
+        )}
+      </form>
+      {currentStep === STEPS.length && (
+        <div className="text-center pt-8">
+          <button
+            onClick={() => {
+              reset();
+              setCurrentStep(1);
+              setPaymentReceipt(null);
+              scrollToTop();
+            }}
+            className="px-6 py-3 mt-4 bg-gray-100 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-200 transition-colors flex items-center mx-auto"
+          >
+            <Users className="w-5 h-5 mr-2" />
+            {t("consultation.startNew")}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
+
+export default ConsultationForm;

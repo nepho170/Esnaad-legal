@@ -101,7 +101,7 @@ export default function Services() {
 
       <div className="max-w-6xl mx-auto px-4 py-16">
         {/* Category Filter */}
-        <div className="mb-12">
+        {/* <div className="mb-12">
           <div className="flex items-center justify-center mb-8">
             <Filter className="w-5 h-5 text-gray-500 mr-3" />
             <span className="text-gray-700 font-medium">
@@ -126,7 +126,7 @@ export default function Services() {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">

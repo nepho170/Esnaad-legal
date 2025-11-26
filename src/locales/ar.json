@@ -82,6 +82,16 @@
       "expandedDescription": "خبرة موسعة ونجاح في تقديم خدمات قانونية شاملة وفقاً لقانون دولة الإمارات العربية المتحدة، خدمة القطاعات الحكومية والعامة والخاصة."
     }
   },
+  "footer": {
+    "description": "تأسست شركة إسناد في عام 2013 كمنشأة قانونية متميزة تقوم على العلاقات الشخصية القوية والالتزام بتقديم خدمات مهنية عالية الجودة. وتمثل الشركة مجموعة واسعة من العملاء، بما في ذلك الشركات متعددة الجنسيات والأعمال والأفراد في مختلف أنحاء دولة الإمارات العربية المتحدة.",
+    "quickLinks": "روابط سريعة",
+    "services": "خدمات",
+    "legalServices": "الخدمات القانونية",
+    "administrativeServices": "الخدمات الإدارية",
+    "debtCollection": "تحصيل الديون",
+    "hrConsulting": "استشارات الموارد البشرية",
+    "contact": "اتصل بنا"
+  },
   "consultation": {
     "title": "نظام الاستشارة عن بُعد",
     "subtitle": "نظام من 9 خطوات للحصول على استشارة قانونية متخصصة",
@@ -138,7 +148,7 @@
       "fileFormat": "PNG, JPG, PDF حتى 10MB",
       "referenceRequired": "رقم المرجع مطلوب"
     },
-    "step3": {
+    "step4": {
       "title": "حدد الوقت المناسب",
       "subtitle": "اختر التاريخ والوقت المناسب للاستشارة",
       "preferredDate": "التاريخ المفضل",
@@ -146,17 +156,17 @@
       "timezone": "المنطقة الزمنية",
       "selectTime": "اختر الوقت",
       "timeSlots": {
-        "09:00": "9:00 صباحاً",
-        "10:00": "10:00 صباحاً",
-        "11:00": "11:00 صباحاً",
-        "14:00": "2:00 مساءً",
-        "15:00": "3:00 مساءً",
-        "16:00": "4:00 مساءً"
+        "0900": "9:00 صباحاً",
+        "1000": "10:00 صباحاً",
+        "1100": "11:00 صباحاً",
+        "1400": "2:00 مساءً",
+        "1500": "3:00 مساءً",
+        "1600": "4:00 مساءً"
       },
       "dateRequired": "التاريخ مطلوب",
       "timeRequired": "الوقت مطلوب"
     },
-    "step4": {
+    "step5": {
       "title": "طريقة الاستشارة",
       "subtitle": "اختر الطريقة المناسبة لك",
       "methods": {
@@ -175,7 +185,7 @@
       },
       "methodRequired": "طريقة الاستشارة مطلوبة"
     },
-    "step5": {
+    "step6": {
       "title": "مدة الاستشارة",
       "subtitle": "الباقة القياسية تشمل 4 جلسات، كل جلسة ساعة واحدة",
       "standardPackage": "الباقة القياسية",
@@ -190,7 +200,7 @@
       "packageTerms": "أوافق على شروط الباقة القياسية",
       "packageRequired": "يجب قبول الباقة"
     },
-    "step6": {
+    "step7": {
       "title": "التقرير المكتوب",
       "subtitle": "لك الحق في الحصول على تقرير مكتوب مفصل",
       "reportIncludes": "يشمل التقرير",
@@ -215,7 +225,7 @@
       },
       "languageRequired": "لغة التقرير مطلوبة"
     },
-    "step7": {
+    "step8": {
       "title": "الخصوصية والسرية",
       "subtitle": "نحافظ على أسرار العملاء ونحترم الفروق الفردية",
       "confidentialityAgreement": "اتفاقية السرية",
@@ -240,7 +250,7 @@
       "privacyRequired": "يجب قبول اتفاقية الخصوصية",
       "dataProtectionRequired": "يجب قبول سياسة حماية البيانات"
     },
-    "step8": {
+    "step9": {
       "title": "تأكيد الحجز",
       "subtitle": "مراجعة نهائية لتفاصيل الاستشارة",
       "bookingSummary": "ملخص الحجز",
@@ -295,8 +305,8 @@
     "stats": {
       "founded": "سنة التأسيس",
       "experience": "سنوات خبرة",
-      "clients": "عميل راضٍ",
-      "successRate": "معدل النجاح"
+      "clients": "العملاء",
+      "government": "الدوائر الحكومية"
     },
     "founder": {
       "name": "د. إياد إبراهيم الغول",
@@ -360,5 +370,89 @@
       "contact": "اتصل بنا",
       "consultation": "احجز استشارة"
     }
+  },
+  "contact": {
+    "form": {
+      "formTitle": "نموذج الاتصال",
+      "nameLabel": "الاسم الكامل",
+      "namePlaceholder": "أدخل اسمك الكامل",
+      "phoneLabel": "رقم الهاتف",
+      "emailLabel": "البريد الإلكتروني",
+      "emailPlaceholder": "أدخل بريدك الإلكتروني",
+      "serviceInterestLabel": "الخدمة المهتم بها",
+      "selectService": "اختر الخدمة",
+      "subjectLabel": "الموضوع",
+      "subjectPlaceholder": "أدخل موضوع رسالتك",
+      "messageLabel": "الرسالة",
+      "messagePlaceholder": "أدخل رسالتك هنا...",
+      "preferredContactLabel": "طريقة الاتصال المفضلة",
+      "preferredTimeLabel": "الوقت المفضل للاتصال",
+      "generalInquiry": "استفسار عام",
+      "submit": "إرسال الرسالة",
+      "sending": "جار الإرسال...",
+      "successTitle": "تم إرسال رسالتك بنجاح!",
+      "successMessage": "شكراً لتواصلك معنا. سنقوم بالرد عليك في أقرب وقت ممكن.",
+      "sendAnother": "إرسال رسالة أخرى",
+      "contactMethod": {
+        "email": "البريد الإلكتروني",
+        "phone": "الهاتف"
+      },
+      "preferredTime": {
+        "any": "أي وقت",
+        "morning": "الصباح (8-12)",
+        "afternoon": "بعد الظهر (12-17)",
+        "evening": "المساء (17-20)"
+      },
+      "errors": {
+        "nameRequired": "الاسم الكامل مطلوب",
+        "nameMinLength": "الاسم يجب أن يكون حرفين على الأقل",
+        "nameMaxLength": "الاسم يجب أن يكون أقل من 50 حرف",
+        "emailRequired": "البريد الإلكتروني مطلوب",
+        "emailInvalid": "البريد الإلكتروني غير صحيح",
+        "phoneRequired": "رقم الهاتف مطلوب",
+        "phoneInvalid": "صيغة رقم الهاتف الإماراتي غير صحيحة",
+        "subjectRequired": "الموضوع مطلوب",
+        "subjectMinLength": "الموضوع يجب أن يكون 5 أحرف على الأقل",
+        "messageRequired": "الرسالة مطلوبة",
+        "messageMinLength": "الرسالة يجب أن تكون 50 حرف على الأقل",
+        "messageMaxLength": "الرسالة يجب أن تكون أقل من 1000 حرف",
+        "authorization": "خطأ في التفويض. تحقق من إعدادات EmailJS.",
+        "invalidData": "خطأ في البيانات المرسلة.",
+        "generalError": "حدث خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى."
+      }
+    },
+    "title": "اتصل بنا",
+    "subtitle": "نحن هنا لمساعدتك. اتصل بنا لأي استفسارات قانونية أو إدارية.",
+    "addressTitle": "العنوان",
+    "addressContent": "شارع حمدان، مبنى  رقم 6\nأبو ظبي، الإمارات العربية المتحدة\nص. ب: 5115",
+    "phoneTitle": "الهاتف والفاكس",
+    "phoneContent": "هاتف: +971 2 622 2210\nفاكس: +971 2 622 2855",
+    "phoneLink": "+971 2 622 2210",
+    "emailTitle": "البريد الإلكتروني",
+    "emailContent": "esnaaduae@gmail.com",
+    "emailLink": "esnaaduae@gmail.com",
+    "hoursTitle": "ساعات العمل",
+    "hoursContent": "الأحد - الخميس: 8:00 صباحًا - 6:00 مساءً\nالسبت: 9:00 صباحًا - 2:00 ظهرًا\nالجمعة: مغلق",
+    "quickActions": "إجراءات سريعة",
+    "whatsapp": "محادثة واتساب",
+    "location": "موقعنا",
+    "remoteConsultationTitle": "نظام الاستشارة عن بعد",
+    "remoteConsultationSubtitle": "احجز استشارة قانونية متخصصة من خلال نظامنا المتقدم المكون من 8 خطوات",
+    "startConsultation": "ابدأ الاستشارة الآن",
+    "callNow": "اتصل الآن"
+  },
+  "contactService": {
+    "administrativeCases": "القضايا الإدارية",
+    "laborDisputes": "منازعات العمل",
+    "rentalCases": "قضايا الإيجار",
+    "contractDrafting": "صياغة العقود",
+    "civilCases": "القضايا المدنية",
+    "criminalCases": "القضايا الجنائية",
+    "commercialCases": "القضايا التجارية",
+    "personalStatus": "قضايا الأحوال الشخصية",
+    "arbitration": "التحكيم",
+    "penalCases": "القضايا الجزائية",
+    "debtCollection": "تحصيل الديون",
+    "administrativeServices": "الخدمات الإدارية"
   }
 }

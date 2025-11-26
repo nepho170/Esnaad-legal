@@ -18,40 +18,33 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: MapPin,
-      title: lng === "ar" ? "العنوان" : "Address",
-      content:
-        lng === "ar"
-          ? "شارع حمدان، مبنى آل رقم 6\nأبو ظبي، دولة الإمارات العربية المتحدة\nص.ب: 5115"
-          : "Hamdan Street, Al Building No. 6\nAbu Dhabi, United Arab Emirates\nP.O. Box: 5115",
+      title: t("contact.addressTitle"),
+      content: t("contact.addressContent"),
     },
     {
       icon: Phone,
-      title: lng === "ar" ? "الهاتف والفاكس" : "Phone & Fax",
-      content:
-        lng === "ar"
-          ? "الهاتف: 2210 622 2 971+\nالفاكس: 2855 622 2 971+"
-          : "Phone: +971 2 622 2210\nFax: +971 2 622 2855",
-      links: [{ type: "tel", value: "+97126222210", text: "+971 2 622 2210" }],
+      title: t("contact.phoneTitle"),
+      content: t("contact.phoneContent"),
+      links: [
+        { type: "tel", value: "+97126222210", text: t("contact.phoneLink") },
+      ],
     },
     {
       icon: Mail,
-      title: lng === "ar" ? "البريد الإلكتروني" : "Email",
-      content: "esnaaduae@gmail.com",
+      title: t("contact.emailTitle"),
+      content: t("contact.emailContent"),
       links: [
         {
           type: "mailto",
           value: "esnaaduae@gmail.com",
-          text: "esnaaduae@gmail.com",
+          text: t("contact.emailLink"),
         },
       ],
     },
     {
       icon: Clock,
-      title: lng === "ar" ? "ساعات العمل" : "Working Hours",
-      content:
-        lng === "ar"
-          ? "الأحد - الخميس: 8:00 ص - 6:00 م\nالسبت: 9:00 ص - 2:00 م\nالجمعة: مغلق"
-          : "Sunday - Thursday: 8:00 AM - 6:00 PM\nSaturday: 9:00 AM - 2:00 PM\nFriday: Closed",
+      title: t("contact.hoursTitle"),
+      content: t("contact.hoursContent"),
     },
   ];
 
@@ -61,12 +54,10 @@ export default function Contact() {
       <section className="bg-stone-800/95 backdrop-blur-md text-white pt-60 pb-20 -mt-32">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            {lng === "ar" ? "اتصل بنا" : "Contact Us"}
+            {t("contact.title")}
           </h1>
           <p className="text-lg max-w-2xl mx-auto opacity-90">
-            {lng === "ar"
-              ? "نحن هنا لمساعدتك. تواصل معنا لأي استفسارات قانونية أو إدارية."
-              : "We are here to help you. Contact us for any legal or administrative inquiries."}
+            {t("contact.subtitle")}
           </p>
         </div>
       </section>
@@ -118,7 +109,7 @@ export default function Contact() {
             {/* Quick Actions */}
             <div className="bg-gradient-to-br from-primary to-primary/90 rounded-lg p-6 text-white">
               <h3 className="text-lg font-semibold mb-4">
-                {lng === "ar" ? "إجراءات سريعة" : "Quick Actions"}
+                {t("contact.quickActions")}
               </h3>
               <div className="space-y-3">
                 <a
@@ -128,14 +119,8 @@ export default function Contact() {
                   className="flex items-center w-full px-4 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
                 >
                   <MessageCircle className="w-5 h-5 mr-3" />
-                  {lng === "ar" ? "واتساب" : "WhatsApp Chat"}
+                  {t("contact.whatsapp")}
                 </a>
-                <button className="flex items-center w-full px-4 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors">
-                  <Download className="w-5 h-5 mr-3" />
-                  {lng === "ar"
-                    ? "تحميل بروفايل الشركة"
-                    : "Download Company Profile"}
-                </button>
               </div>
             </div>
 
@@ -143,7 +128,7 @@ export default function Contact() {
             <div className="bg-white rounded-lg overflow-hidden shadow-medium">
               <div className="p-4 border-b border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-900">
-                  {lng === "ar" ? "موقعنا" : "Our Location"}
+                  {t("contact.location")}
                 </h3>
               </div>
               <div className="h-64">
@@ -163,7 +148,7 @@ export default function Contact() {
 
         {/* Trust Badges */}
         <div className="mt-16 text-center">
-          <div className="bg-light rounded-lg p-8">
+          {/* <div className="bg-light rounded-lg p-8">
             <h3 className="text-xl font-semibold text-gray-900 mb-4">
               {lng === "ar"
                 ? "شهادات الاعتماد"
@@ -189,21 +174,17 @@ export default function Contact() {
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Remote Consultation CTA */}
           <div className="bg-gradient-to-br from-primary to-primary/90 rounded-xl p-8 text-white text-center mt-12">
             <div className="max-w-3xl mx-auto">
               <MessageCircle className="w-16 h-16 mx-auto mb-6 opacity-90" />
               <h3 className="text-2xl font-bold mb-4">
-                {lng === "ar"
-                  ? "نظام الاستشارة عن بُعد"
-                  : "Remote Consultation System"}
+                {t("contact.remoteConsultationTitle")}
               </h3>
               <p className="text-lg mb-6 opacity-90">
-                {lng === "ar"
-                  ? "احجز استشارة قانونية متخصصة من خلال نظامنا المتطور المكون من 8 خطوات"
-                  : "Book specialized legal consultation through our advanced 8-step system"}
+                {t("contact.remoteConsultationSubtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
@@ -211,16 +192,14 @@ export default function Contact() {
                   className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-200"
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
-                  {lng === "ar"
-                    ? "ابدأ الاستشارة الآن"
-                    : "Start Consultation Now"}
+                  {t("contact.startConsultation")}
                 </a>
                 <a
                   href={`tel:+97126222210`}
                   className="inline-flex items-center justify-center px-8 py-4 bg-white/20 text-white font-semibold rounded-lg hover:bg-white/30 transition-colors duration-200"
                 >
                   <Phone className="w-5 h-5 mr-2" />
-                  {lng === "ar" ? "اتصل الآن" : "Call Now"}
+                  {t("contact.callNow")}
                 </a>
               </div>
             </div>

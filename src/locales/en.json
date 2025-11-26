@@ -20,6 +20,16 @@
     "title": "Our Message",
     "content": "We hope to provide all legal services perfectly by relying on our core values which are: diligence, commitment, responsiveness, strengthening trust and integrity, and reaching success that satisfies our customers in the future and preserves their legal rights."
   },
+  "footer": {
+    "description": "Founded in 2013, Esnaad is a distinctive law firm built on strong personal relationships and a commitment to high-quality, professional service. The firm represents a wide range of clients, including multinational companies, businesses, and individuals across the United Arab Emirates.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "legalServices": "Legal Services",
+    "administrativeServices": "Administrative Services",
+    "debtCollection": "Debt Collection",
+    "hrConsulting": "HR Consulting",
+    "contact": "Contact"
+  },
   "services": {
     "title": "Our Services",
     "subtitle": "Comprehensive legal and administrative solutions for your business needs",
@@ -44,6 +54,7 @@
       "description": "You are our client. We work to achieve your business goals, we need to operate as a team."
     }
   },
+
   "sectors": {
     "title": "Sectors We Serve",
     "government": {
@@ -53,9 +64,9 @@
     "public": {
       "title": "Public Institutions",
       "items": [
-        "Commercial Chambers",
-        "Industrial Federations",
-        "Professional Federations"
+        "Chambers of Commerce",
+        "Industrial Unions",
+        "Professional Unions"
       ]
     },
     "private": {
@@ -70,15 +81,16 @@
       "title": "Our Achievements",
       "items": [
         "Improved institutional interaction positively",
-        "Improved quality of production and services",
+        "Enhanced production and service quality",
         "Increased sales volume and revenue",
         "Reduced wasted raw materials",
         "Increased use of computerized information systems",
-        "Improved performance awareness of human cadres",
-        "Improved governance level"
+        "Improved performance awareness of human resources",
+        "Enhanced governance levels"
       ]
     }
   },
+
   "history": {
     "title": "Our History",
     "founded": "Founded in 2013",
@@ -98,11 +110,12 @@
       "paragraph1": "Esnaad Legal & Administrative Consultancy was founded in 2013 by Dr. Iyad Ibrahim Al-Ghoul, with the aim of providing distinguished legal services that adhere to the highest standards of quality and professionalism.",
       "paragraph2": "Since its establishment, the company has grown to become one of the distinguished law firms in the United Arab Emirates, expanding its experience and success in providing all required services in accordance with UAE law."
     },
+
     "stats": {
       "founded": "Founded",
       "experience": "Years Experience",
-      "clients": "Satisfied Clients",
-      "successRate": "Success Rate"
+      "clients": "Clients",
+      "government": "Government Departments"
     },
     "founder": {
       "name": "Dr. Iyad Ibrahim Al-Ghoul",
@@ -226,23 +239,7 @@
       "invalidFileType": "Invalid file type. Please upload PDF, JPG, or PNG files only",
       "removeFile": "Remove File"
     },
-    "step3": {
-      "title": "Payment Information",
-      "subtitle": "Complete payment to proceed with your consultation",
-      "bankDetails": "Bank Details",
-      "bankName": "Bank Name",
-      "accountNumber": "Account Number",
-      "accountName": "Account Name",
-      "paymentReference": "Payment Reference Number",
-      "referenceRequired": "Payment reference is required",
-      "paymentReferencePlaceholder": "Enter payment reference number",
-      "uploadReceipt": "Upload Payment Receipt (Optional)",
-      "chooseFile": "Choose File",
-      "fileFormat": "PDF, JPG, PNG (Max 10MB)",
-      "fileTooLarge": "File size must be less than 10MB",
-      "invalidFileType": "Invalid file type. Please upload PDF, JPG, or PNG files only",
-      "removeFile": "Remove File"
-    },
+
     "step4": {
       "title": "Schedule Your Consultation",
       "subtitle": "Select your preferred date and time",
@@ -253,12 +250,12 @@
       "selectTime": "Select time",
       "timezone": "Timezone",
       "timeSlots": {
-        "09:00": "9:00 AM",
-        "10:00": "10:00 AM",
-        "11:00": "11:00 AM",
-        "14:00": "2:00 PM",
-        "15:00": "3:00 PM",
-        "16:00": "4:00 PM"
+        "0900": "9:00 AM",
+        "1000": "10:00 AM",
+        "1100": "11:00 AM",
+        "1400": "2:00 PM",
+        "1500": "3:00 PM",
+        "1600": "4:00 PM"
       }
     },
     "step5": {
@@ -280,7 +277,7 @@
         }
       }
     },
-    "step5": {
+    "step6": {
       "title": "Consultation Package",
       "subtitle": "Review your consultation package details",
       "standardPackage": "Standard Consultation Package",
@@ -295,7 +292,7 @@
       "packageRequired": "Please accept the package terms",
       "packageTerms": "I accept the consultation package terms and conditions"
     },
-    "step6": {
+    "step7": {
       "title": "Consultation Report",
       "subtitle": "Specify your report preferences",
       "reportIncludes": "Your Report Includes:",
@@ -320,7 +317,7 @@
         "mail": "Postal mail"
       }
     },
-    "step7": {
+    "step8": {
       "title": "Privacy & Confidentiality",
       "subtitle": "Review our privacy and data protection policies",
       "confidentialityAgreement": "Confidentiality Agreement",
@@ -345,7 +342,7 @@
       "privacyRequired": "Please accept privacy policy",
       "dataProtectionRequired": "Please accept data protection terms"
     },
-    "step8": {
+    "step9": {
       "title": "Booking Confirmation",
       "subtitle": "Review your consultation details",
       "bookingSummary": "Consultation Summary",
@@ -388,5 +385,90 @@
       "debt-collection": "Debt Collection",
       "administrative-services": "Administrative Services"
     }
+  },
+
+  "contact": {
+    "form": {
+      "formTitle": "Contact Form",
+      "nameLabel": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "phoneLabel": "Phone Number",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "serviceInterestLabel": "Service Interest",
+      "selectService": "Select a service",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Enter the subject of your message",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Enter your message here...",
+      "preferredContactLabel": "Preferred Contact Method",
+      "preferredTimeLabel": "Preferred Time to Contact",
+      "generalInquiry": "General Inquiry",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "successTitle": "Message Sent Successfully!",
+      "successMessage": "Thank you for contacting us. We will get back to you as soon as possible.",
+      "sendAnother": "Send Another Message",
+      "contactMethod": {
+        "email": "Email",
+        "phone": "Phone"
+      },
+      "preferredTime": {
+        "any": "Any time",
+        "morning": "Morning (8-12)",
+        "afternoon": "Afternoon (12-5)",
+        "evening": "Evening (5-8)"
+      },
+      "errors": {
+        "nameRequired": "Full name is required",
+        "nameMinLength": "Name must be at least 2 characters",
+        "nameMaxLength": "Name must be less than 50 characters",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Invalid email address",
+        "phoneRequired": "Phone number is required",
+        "phoneInvalid": "Invalid UAE phone number format",
+        "subjectRequired": "Subject is required",
+        "subjectMinLength": "Subject must be at least 5 characters",
+        "messageRequired": "Message is required",
+        "messageMinLength": "Message must be at least 50 characters",
+        "messageMaxLength": "Message must be less than 1000 characters",
+        "authorization": "Authorization error. Please check EmailJS settings.",
+        "invalidData": "Invalid data sent.",
+        "generalError": "Failed to send message. Please try again."
+      }
+    },
+    "title": "Contact Us",
+    "subtitle": "We are here to help you. Contact us for any legal or administrative inquiries.",
+    "addressTitle": "Address",
+    "addressContent": "Hamdan Street, Al Building No. 6\nAbu Dhabi, United Arab Emirates\nP.O. Box: 5115",
+    "phoneTitle": "Phone & Fax",
+    "phoneContent": "Phone: +971 2 622 2210\nFax: +971 2 622 2855",
+    "phoneLink": "+971 2 622 2210",
+    "emailTitle": "Email",
+    "emailContent": "esnaaduae@gmail.com",
+    "emailLink": "esnaaduae@gmail.com",
+    "hoursTitle": "Working Hours",
+    "hoursContent": "Sunday - Thursday: 8:00 AM - 6:00 PM\nSaturday: 9:00 AM - 2:00 PM\nFriday: Closed",
+    "quickActions": "Quick Actions",
+    "whatsapp": "WhatsApp Chat",
+    "location": "Our Location",
+    "remoteConsultationTitle": "Remote Consultation System",
+    "remoteConsultationSubtitle": "Book specialized legal consultation through our advanced 8-step system",
+    "startConsultation": "Start Consultation Now",
+    "callNow": "Call Now"
+  },
+  "contactService": {
+    "administrativeCases": "Administrative Cases",
+    "laborDisputes": "Labor Disputes",
+    "rentalCases": "Rental Cases",
+    "contractDrafting": "Contract Drafting",
+    "civilCases": "Civil Cases",
+    "criminalCases": "Criminal Cases",
+    "commercialCases": "Commercial Cases",
+    "personalStatus": "Personal Status Cases",
+    "arbitration": "Arbitration",
+    "penalCases": "Penal Cases",
+    "debtCollection": "Debt Collection",
+    "administrativeServices": "Administrative Services"
   }
 }
