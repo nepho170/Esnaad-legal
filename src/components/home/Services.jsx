@@ -13,19 +13,19 @@ function ServiceCard({ service, language }) {
   return (
     <Link
       to={`/${language}/services/${service.id}`}
-      className="group bg-gray-50 hover:bg-white rounded-xl p-6 shadow-small hover:shadow-large transition-all duration-300 hover:-translate-y-2 border border-gray-200 hover:border-primary/20 w-[280px] h-[280px] flex-shrink-0 flex flex-col"
+      className="group bg-beige-50 hover:bg-white rounded-xl p-6 shadow-small hover:shadow-large transition-all duration-300 hover:-translate-y-2 border border-beige-200 hover:border-primary/30 w-[280px] h-[280px] flex-shrink-0 flex flex-col"
     >
       <div className="flex items-center mb-4">
-        <div className="w-12 h-12 bg-primary/10 group-hover:bg-gold/10 rounded-lg flex items-center justify-center mr-4 transition-colors duration-300">
+        <div className="w-12 h-12 bg-primary/10 group-hover:bg-gold/20 rounded-lg flex items-center justify-center mr-4 transition-colors duration-300">
           {Icon && (
             <Icon className="w-6 h-6 text-primary group-hover:text-gold transition-colors duration-300" />
           )}
         </div>
       </div>
-      <h3 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-300 flex-shrink-0">
+      <h3 className="text-lg font-semibold text-dark mb-3 group-hover:text-primary transition-colors duration-300 flex-shrink-0">
         {title}
       </h3>
-      <p className="text-gray-600 mb-4 leading-relaxed flex-grow line-clamp-4 text-sm">
+      <p className="text-brown-700 mb-4 leading-relaxed flex-grow line-clamp-4 text-sm">
         {description}
       </p>
       <div className="text-gold hover:text-gold/80 font-medium flex items-center group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0 mt-auto">
@@ -43,13 +43,13 @@ export default function Services() {
   const currentLang = i18n.language || "en";
 
   return (
-    <section id="services" className="py-20 bg-light">
+    <section id="services" className="py-20 bg-warm-gradient">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4">
             {t("services.title")}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-brown-700 max-w-2xl mx-auto">
             {t("services.subtitle")}
           </p>
         </div>

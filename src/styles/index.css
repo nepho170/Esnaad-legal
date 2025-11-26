@@ -2,10 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Remove default margins and ensure full coverage */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Courthouse-inspired gradients */
+.bg-courthouse-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-beige) 0%,
+    var(--color-stone) 50%,
+    var(--color-gold) 100%
+  );
+}
+
+/* Text shadow utilities for header */
+.text-shadow-lg {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.drop-shadow-lg {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
 :root {
-  --color-primary: #1a3a52;
-  --color-gold: #b8860b;
-  --color-teal: #008b8b;
+  --color-primary: #8b4513; /* Saddle brown */
+  --color-secondary: #d2691e; /* Chocolate */
+  --color-gold: #daa520; /* Goldenrod */
+  --color-beige: #b8956a; /* Main beige */
+  --color-stone: #b5a569; /* Stone from courthouse */
+  --color-light: #faf8f3; /* Warm light */
+  --color-dark: #3f3124; /* Warm dark */
 }
 
 html,
@@ -17,14 +54,40 @@ body,
 body {
   font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial;
-  background-color: #fff;
-  color: #111827;
+  background-color: var(--color-light);
+  color: var(--color-dark);
 }
 
-/* Tiny helper for gold color */
+/* Color utilities for the courthouse theme */
 .text-gold {
   color: var(--color-gold);
 }
 .bg-gold {
   background-color: var(--color-gold);
+}
+.text-beige {
+  color: var(--color-beige);
+}
+.bg-beige {
+  background-color: var(--color-beige);
+}
+.text-stone {
+  color: var(--color-stone);
+}
+.bg-stone {
+  background-color: var(--color-stone);
+}
+
+/* Courthouse-inspired gradients */
+.bg-courthouse-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-beige) 0%,
+    var(--color-stone) 50%,
+    var(--color-primary) 100%
+  );
+}
+
+.bg-warm-gradient {
+  background: linear-gradient(135deg, #f7f3f0 0%, #ede5de 50%, #d4c0ae 100%);
 }

@@ -657,16 +657,16 @@ function Step7Report({ register, watch, errors, language, t }) {
     <div className="space-y-6">
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          {t("consultation.step7.title")}
+          {t("consultation.step6.title")}
         </h2>
-        <p className="text-gray-600">{t("consultation.step7.subtitle")}</p>
+        <p className="text-gray-600">{t("consultation.step6.subtitle")}</p>
       </div>
 
       <div className="bg-light rounded-lg p-6">
         <div className="flex items-center mb-4">
           <FileText className="w-6 h-6 text-primary mr-3" />
           <h3 className="text-lg font-semibold text-gray-900">
-            {t("consultation.step7.reportIncludes")}
+            {t("consultation.step6.reportIncludes")}
           </h3>
         </div>
 
@@ -674,25 +674,25 @@ function Step7Report({ register, watch, errors, language, t }) {
           <div className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
             <span className="text-gray-700">
-              {t("consultation.step7.includes.analysis")}
+              {t("consultation.step6.includes.analysis")}
             </span>
           </div>
           <div className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
             <span className="text-gray-700">
-              {t("consultation.step7.includes.recommendations")}
+              {t("consultation.step6.includes.recommendations")}
             </span>
           </div>
           <div className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
             <span className="text-gray-700">
-              {t("consultation.step7.includes.opinion")}
+              {t("consultation.step6.includes.opinion")}
             </span>
           </div>
           <div className="flex items-start">
             <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
             <span className="text-gray-700">
-              {t("consultation.step7.includes.nextSteps")}
+              {t("consultation.step6.includes.nextSteps")}
             </span>
           </div>
         </div>
@@ -700,25 +700,25 @@ function Step7Report({ register, watch, errors, language, t }) {
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-3">
-          {t("consultation.step7.reportLanguage")}{" "}
+          {t("consultation.step6.reportLanguage")}{" "}
           <span className="text-red-500">*</span>
         </label>
         <select
           {...register("reportLanguage", {
-            required: t("consultation.step7.languageRequired"),
+            required: t("consultation.step6.languageRequired"),
           })}
           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent ${
             errors.reportLanguage ? "border-red-500" : "border-gray-300"
           }`}
         >
-          <option value="">{t("consultation.step7.selectLanguage")}</option>
+          <option value="">{t("consultation.step6.selectLanguage")}</option>
           <option value="arabic">
-            {t("consultation.step7.languages.arabic")}
+            {t("consultation.step6.languages.arabic")}
           </option>
           <option value="english">
-            {t("consultation.step7.languages.english")}
+            {t("consultation.step6.languages.english")}
           </option>
-          <option value="both">{t("consultation.step7.languages.both")}</option>
+          <option value="both">{t("consultation.step6.languages.both")}</option>
         </select>
         {errors.reportLanguage && (
           <p className="mt-1 text-sm text-red-600">
@@ -729,7 +729,7 @@ function Step7Report({ register, watch, errors, language, t }) {
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-3">
-          {t("consultation.step7.deliveryMethod")}
+          {t("consultation.step6.deliveryMethod")}
         </label>
         <div className="space-y-2">
           <label className="flex items-center">
@@ -740,7 +740,7 @@ function Step7Report({ register, watch, errors, language, t }) {
               className="mr-3"
               defaultChecked
             />
-            <span>{t("consultation.step7.deliveryOptions.email")}</span>
+            <span>{t("consultation.step6.deliveryOptions.email")}</span>
           </label>
           <label className="flex items-center">
             <input
@@ -749,7 +749,7 @@ function Step7Report({ register, watch, errors, language, t }) {
               {...register("deliveryMethod")}
               className="mr-3"
             />
-            <span>{t("consultation.step7.deliveryOptions.pickup")}</span>
+            <span>{t("consultation.step6.deliveryOptions.pickup")}</span>
           </label>
           <label className="flex items-center">
             <input
@@ -758,7 +758,7 @@ function Step7Report({ register, watch, errors, language, t }) {
               {...register("deliveryMethod")}
               className="mr-3"
             />
-            <span>{t("consultation.step7.deliveryOptions.mail")}</span>
+            <span>{t("consultation.step6.deliveryOptions.mail")}</span>
           </label>
         </div>
       </div>
@@ -1140,15 +1140,18 @@ This is a consultation booking request via the website.
   }
 
   return (
-    <div className="pt-28 pb-16">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-primary mb-4">
-            {t("consultation.title")}
-          </h1>
-          <p className="text-lg text-gray-600">{t("consultation.subtitle")}</p>
+    <div>
+      {/* Hero Section */}
+      <section className="bg-stone-800/95 backdrop-blur-md text-white pt-60 pb-20 -mt-32">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h1 className="text-4xl font-bold mb-4">{t("consultation.title")}</h1>
+          <p className="text-lg max-w-2xl mx-auto opacity-90">
+            {t("consultation.subtitle")}
+          </p>
         </div>
+      </section>
 
+      <div className="max-w-4xl mx-auto px-4 py-16">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-white rounded-xl shadow-large p-8"

@@ -84,20 +84,22 @@ export default function Services() {
       : allServices.filter((service) => service.category === selectedCategory);
 
   return (
-    <div className="pt-28 pb-16">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-4">
+    <div>
+      {/* Hero Section */}
+      <section className="bg-stone-800/95 backdrop-blur-md text-white pt-60 pb-20 -mt-32">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
             {currentLang === "ar" ? "خدماتنا" : "Our Services"}
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto opacity-90">
             {currentLang === "ar"
               ? "نقدم مجموعة شاملة من الخدمات القانونية والإدارية لتلبية احتياجاتك"
               : "We provide a comprehensive range of legal and administrative services to meet your needs"}
           </p>
         </div>
+      </section>
 
+      <div className="max-w-6xl mx-auto px-4 py-16">
         {/* Category Filter */}
         <div className="mb-12">
           <div className="flex items-center justify-center mb-8">

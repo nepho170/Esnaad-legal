@@ -35,7 +35,7 @@ function LanguageOutlet() {
     <>
       <ScrollToTop />
       <Header />
-      <main className="min-h-[60vh]">
+      <main>
         <Outlet />
       </main>
       <Footer />

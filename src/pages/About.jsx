@@ -77,18 +77,20 @@ export default function About() {
   ];
 
   return (
-    <div className="pt-28 pb-16">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-4">
+    <div>
+      {/* Hero Section */}
+      <section className="bg-stone-800/95 backdrop-blur-md text-white pt-60 pb-20 -mt-32">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
             {t("about.title")}
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto opacity-90">
             {t("about.subtitle")}
           </p>
         </div>
+      </section>
 
+      <div className="max-w-6xl mx-auto px-4 py-16">
         {/* Our Story Section */}
         <section className="mb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

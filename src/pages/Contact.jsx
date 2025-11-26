@@ -56,20 +56,22 @@ export default function Contact() {
   ];
 
   return (
-    <div className="pt-28 pb-16">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-4">
+    <div>
+      {/* Hero Section */}
+      <section className="bg-stone-800/95 backdrop-blur-md text-white pt-60 pb-20 -mt-32">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">
             {lng === "ar" ? "اتصل بنا" : "Contact Us"}
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto opacity-90">
             {lng === "ar"
               ? "نحن هنا لمساعدتك. تواصل معنا لأي استفسارات قانونية أو إدارية."
               : "We are here to help you. Contact us for any legal or administrative inquiries."}
           </p>
         </div>
+      </section>
 
+      <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Form */}
           <div>
@@ -146,14 +148,13 @@ export default function Contact() {
               </div>
               <div className="h-64">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3631.8936305076095!2d54.36632987602842!3d24.486686078193864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e68e2a27b7723%3A0x8e63e5b2a6d4c1a6!2sHamdan%20St%2C%20Abu%20Dhabi%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2s!4v1698073200000!5m2!1sen!2s"
-                  width="100%"
-                  height="100%"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58096.69181112679!2d54.285333778271536!3d24.483958672431246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e66650a1a555b%3A0x4f1feb9a80055619!2z2KfYs9mG2KfYryDZhNmE2KfYs9iq2LTYp9ix2KfYqiDYp9mE2YLYp9mG2YjZhtmK2Kkg2Ykg2KfZhNin2K_Yp9ix2YrYqSDZiCDYp9mE2YXZiNin2LHYryDYp9mE2KjYtNix2YrYqQ!5e0!3m2!1sen!2sus!4v1764153009218!5m2!1sen!2sus"
+                  width="600"
+                  height="450"
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Esnaad Legal Office Location"
                 ></iframe>
               </div>
             </div>
