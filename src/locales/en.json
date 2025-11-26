@@ -1,0 +1,392 @@
+{
+  "header": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "consultation": "Consultation System",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Esnaad Legal & Administrative Consultancy",
+    "subtitle": "Your trusted partner for legal excellence in the UAE",
+    "cta1": "Our Services",
+    "cta2": "Book Consultation"
+  },
+  "vision": {
+    "title": "Our Vision",
+    "content": "We aspire to apply the law of the United Arab Emirates through our legal and administrative services and human resources and debt collection, by providing our full effort to serve customers with honesty and transparency to achieve the ultimate goal of returning rights to their owners, and applying the law in a way that protects the individual and society."
+  },
+  "message": {
+    "title": "Our Message",
+    "content": "We hope to provide all legal services perfectly by relying on our core values which are: diligence, commitment, responsiveness, strengthening trust and integrity, and reaching success that satisfies our customers in the future and preserves their legal rights."
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive legal and administrative solutions for your business needs",
+    "learnMore": "Learn More"
+  },
+  "values": {
+    "title": "Our Values",
+    "integrity": {
+      "title": "Integrity",
+      "description": "We lead by example in all we do. We set the highest goals of honesty and ethics."
+    },
+    "service": {
+      "title": "Service",
+      "description": "Our work is handled timely and efficiently."
+    },
+    "excellence": {
+      "title": "Excellence",
+      "description": "Our work reflects our best efforts, never less."
+    },
+    "teamwork": {
+      "title": "Teamwork",
+      "description": "You are our client. We work to achieve your business goals, we need to operate as a team."
+    }
+  },
+  "sectors": {
+    "title": "Sectors We Serve",
+    "government": {
+      "title": "Government Institutions",
+      "items": ["Ministries", "Local Departments", "Abu Dhabi Municipality"]
+    },
+    "public": {
+      "title": "Public Institutions",
+      "items": [
+        "Commercial Chambers",
+        "Industrial Federations",
+        "Professional Federations"
+      ]
+    },
+    "private": {
+      "title": "Private Sector",
+      "items": [
+        "Industrial Companies",
+        "Service Companies",
+        "All Private Sectors"
+      ]
+    },
+    "achievements": {
+      "title": "Our Achievements",
+      "items": [
+        "Improved institutional interaction positively",
+        "Improved quality of production and services",
+        "Increased sales volume and revenue",
+        "Reduced wasted raw materials",
+        "Increased use of computerized information systems",
+        "Improved performance awareness of human cadres",
+        "Improved governance level"
+      ]
+    }
+  },
+  "history": {
+    "title": "Our History",
+    "founded": "Founded in 2013",
+    "founder": "Dr. Iyad Ibrahim Al-Ghoul",
+    "description": "Expanded experience and success in providing all services as required by UAE law",
+    "timeline": {
+      "continuous": "Continuous Growth",
+      "present": "Present - 2013",
+      "expandedDescription": "Expanded experience and success in providing comprehensive legal services in accordance with UAE law, serving government, public, and private sectors."
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Learn about our story, our team, and why we are the right choice for your legal services",
+    "ourStory": {
+      "title": "Our Story",
+      "paragraph1": "Esnaad Legal & Administrative Consultancy was founded in 2013 by Dr. Iyad Ibrahim Al-Ghoul, with the aim of providing distinguished legal services that adhere to the highest standards of quality and professionalism.",
+      "paragraph2": "Since its establishment, the company has grown to become one of the distinguished law firms in the United Arab Emirates, expanding its experience and success in providing all required services in accordance with UAE law."
+    },
+    "stats": {
+      "founded": "Founded",
+      "experience": "Years Experience",
+      "clients": "Satisfied Clients",
+      "successRate": "Success Rate"
+    },
+    "founder": {
+      "name": "Dr. Iyad Ibrahim Al-Ghoul",
+      "position": "Founder & CEO",
+      "description": "A visionary leader with extensive academic and practical background in law and business administration, leading the Esnaad team with over a decade of experience in legal and administrative services.",
+      "qualifications": "Academic Qualifications",
+      "degrees": [
+        "PhD in Business Administration",
+        "PhD in Public Law",
+        "PhD in Human Resources",
+        "PhD in Quality",
+        "Master of Business Administration (MBA)",
+        "BA in English Language"
+      ]
+    },
+    "team": {
+      "title": "Team Credentials",
+      "credentials": {
+        "lawyers": "Elite group of lawyers and legal consultants",
+        "accredited": "Accredited lawyers from UAE Bar Association",
+        "expertise": "Expertise across all legal specializations",
+        "competence": "High competence in administrative work"
+      }
+    },
+    "whyChoose": {
+      "title": "Why Choose Esnaad?",
+      "reasons": {
+        "experienced": {
+          "title": "Experienced Legal Professionals",
+          "description": "Our team consists of highly qualified lawyers with extensive experience in UAE law."
+        },
+        "comprehensive": {
+          "title": "Comprehensive Legal Coverage",
+          "description": "We handle all types of legal cases from administrative to commercial and criminal law."
+        },
+        "confidentiality": {
+          "title": "Client Confidentiality Guaranteed",
+          "description": "We maintain strict confidentiality and protect all client information."
+        },
+        "transparent": {
+          "title": "Transparent Pricing & Processes",
+          "description": "Clear pricing structure with no hidden costs and transparent legal processes."
+        },
+        "proven": {
+          "title": "Proven Track Record",
+          "description": "High success rate in cases with satisfied clients across various sectors."
+        },
+        "bilingual": {
+          "title": "Bilingual Services (Arabic/English)",
+          "description": "Fluent communication in both Arabic and English for diverse clients."
+        }
+      }
+    },
+    "responsibility": {
+      "title": "Our Responsibility to Clients",
+      "description": "We pledge to maintain our customer service as embodied in law, and to maintain strict confidentiality which belongs to our customers and enhance confidence, because their goal is our goal. We strive to respond in all our work in a manner that guarantees the right resort to us in accordance with the law of the United Arab Emirates and to enforce it by all legal means before all courts."
+    },
+    "cta": {
+      "title": "Ready to Work with Us?",
+      "description": "Contact us today and discover how our legal expertise can help protect your rights and achieve your goals.",
+      "contact": "Contact Us",
+      "consultation": "Book Consultation"
+    }
+  },
+  "consultation": {
+    "title": "Remote Consultation System",
+    "subtitle": "9-step system for specialized legal consultation",
+    "steps": {
+      "contact": "Contact Info",
+      "service": "Service Type",
+      "payment": "Payment",
+      "schedule": "Scheduling",
+      "method": "Method",
+      "duration": "Duration",
+      "report": "Report",
+      "privacy": "Privacy",
+      "confirmation": "Confirmation"
+    },
+    "stepIndicator": {
+      "step": "Step",
+      "of": "of"
+    },
+    "step1": {
+      "title": "Contact Information",
+      "subtitle": "Please provide your contact details",
+      "fullName": "Full Name",
+      "fullNameRequired": "Full name is required",
+      "fullNameMinLength": "Name must be at least 2 characters",
+      "fullNamePlaceholder": "Enter your full name",
+      "email": "Email Address",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address",
+      "emailPlaceholder": "Enter your email address",
+      "phone": "Phone Number",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Please enter a valid UAE phone number"
+    },
+    "step2": {
+      "title": "Select Service Type",
+      "subtitle": "Choose the legal service you need consultation for",
+      "serviceType": "Service Type",
+      "required": "Please select a service type",
+      "selectService": "Select a service",
+      "description": "Case Description",
+      "descriptionPlaceholder": "Describe your legal case or inquiry..."
+    },
+    "step3": {
+      "title": "Payment Information",
+      "subtitle": "Complete payment to proceed with your consultation",
+      "bankDetails": "Bank Details",
+      "bankName": "Bank Name",
+      "accountNumber": "Account Number",
+      "accountName": "Account Name",
+      "paymentReference": "Payment Reference Number",
+      "referenceRequired": "Payment reference is required",
+      "paymentReferencePlaceholder": "Enter payment reference number",
+      "uploadReceipt": "Upload Payment Receipt (Optional)",
+      "chooseFile": "Choose File",
+      "fileFormat": "PDF, JPG, PNG (Max 10MB)",
+      "fileTooLarge": "File size must be less than 10MB",
+      "invalidFileType": "Invalid file type. Please upload PDF, JPG, or PNG files only",
+      "removeFile": "Remove File"
+    },
+    "step3": {
+      "title": "Payment Information",
+      "subtitle": "Complete payment to proceed with your consultation",
+      "bankDetails": "Bank Details",
+      "bankName": "Bank Name",
+      "accountNumber": "Account Number",
+      "accountName": "Account Name",
+      "paymentReference": "Payment Reference Number",
+      "referenceRequired": "Payment reference is required",
+      "paymentReferencePlaceholder": "Enter payment reference number",
+      "uploadReceipt": "Upload Payment Receipt (Optional)",
+      "chooseFile": "Choose File",
+      "fileFormat": "PDF, JPG, PNG (Max 10MB)",
+      "fileTooLarge": "File size must be less than 10MB",
+      "invalidFileType": "Invalid file type. Please upload PDF, JPG, or PNG files only",
+      "removeFile": "Remove File"
+    },
+    "step4": {
+      "title": "Schedule Your Consultation",
+      "subtitle": "Select your preferred date and time",
+      "preferredDate": "Preferred Date",
+      "dateRequired": "Please select a date",
+      "preferredTime": "Preferred Time",
+      "timeRequired": "Please select a time",
+      "selectTime": "Select time",
+      "timezone": "Timezone",
+      "timeSlots": {
+        "09:00": "9:00 AM",
+        "10:00": "10:00 AM",
+        "11:00": "11:00 AM",
+        "14:00": "2:00 PM",
+        "15:00": "3:00 PM",
+        "16:00": "4:00 PM"
+      }
+    },
+    "step5": {
+      "title": "Consultation Method",
+      "subtitle": "Choose how you'd like to receive your consultation",
+      "methodRequired": "Please select a consultation method",
+      "methods": {
+        "phone": {
+          "title": "Phone Call",
+          "description": "Direct consultation via phone call"
+        },
+        "video": {
+          "title": "Video Meeting",
+          "description": "Online video consultation via Zoom or Teams"
+        },
+        "inPerson": {
+          "title": "In-Person Meeting",
+          "description": "Visit our office for face-to-face consultation"
+        }
+      }
+    },
+    "step5": {
+      "title": "Consultation Package",
+      "subtitle": "Review your consultation package details",
+      "standardPackage": "Standard Consultation Package",
+      "optimalSolution": "Optimal solution for most legal consultations",
+      "features": {
+        "sessions": "Up to 2 consultation sessions",
+        "duration": "60 minutes per session",
+        "flexibility": "Flexible scheduling",
+        "report": "Detailed written report"
+      },
+      "totalPrice": "Total Price:",
+      "packageRequired": "Please accept the package terms",
+      "packageTerms": "I accept the consultation package terms and conditions"
+    },
+    "step6": {
+      "title": "Consultation Report",
+      "subtitle": "Specify your report preferences",
+      "reportIncludes": "Your Report Includes:",
+      "includes": {
+        "analysis": "Legal situation analysis",
+        "recommendations": "Expert recommendations",
+        "opinion": "Professional legal opinion",
+        "nextSteps": "Suggested next steps"
+      },
+      "reportLanguage": "Report Language",
+      "languageRequired": "Please select report language",
+      "selectLanguage": "Select language",
+      "languages": {
+        "arabic": "Arabic",
+        "english": "English",
+        "both": "Both Languages"
+      },
+      "deliveryMethod": "Delivery Method",
+      "deliveryOptions": {
+        "email": "Email delivery",
+        "pickup": "Office pickup",
+        "mail": "Postal mail"
+      }
+    },
+    "step7": {
+      "title": "Privacy & Confidentiality",
+      "subtitle": "Review our privacy and data protection policies",
+      "confidentialityAgreement": "Confidentiality Agreement",
+      "confidentialityText1": "All information shared during consultation is strictly confidential and protected under attorney-client privilege.",
+      "confidentialityText2": "We guarantee complete discretion and professional handling of all sensitive information.",
+      "dataProtection": "Data Protection",
+      "dataProtectionFeatures": {
+        "encryption": "All data is encrypted and securely stored",
+        "access": "Restricted access to authorized personnel only",
+        "deletion": "Data deletion upon request"
+      },
+      "individualDifferences": "Equal Treatment & Non-Discrimination",
+      "equalTreatment": {
+        "background": "We provide equal treatment regardless of background, nationality, or beliefs.",
+        "professional": "All consultations are conducted with the highest level of professionalism.",
+        "cultural": "We respect cultural differences and individual preferences."
+      },
+      "agreements": {
+        "privacy": "I agree to the privacy policy and confidentiality terms",
+        "dataProtection": "I consent to data processing as described"
+      },
+      "privacyRequired": "Please accept privacy policy",
+      "dataProtectionRequired": "Please accept data protection terms"
+    },
+    "step8": {
+      "title": "Booking Confirmation",
+      "subtitle": "Review your consultation details",
+      "bookingSummary": "Consultation Summary",
+      "serviceType": "Service Type",
+      "consultationMethod": "Method",
+      "dateTime": "Date & Time",
+      "reportLanguage": "Report Language",
+      "caseDescription": "Case Description",
+      "nextSteps": "Next Steps",
+      "nextStepsItems": {
+        "email": "You'll receive a confirmation email with all details",
+        "confirmation": "Our team will contact you to confirm the appointment",
+        "report": "You'll receive your consultation report within 48 hours"
+      },
+      "bookingReference": "Booking Reference:",
+      "keepReference": "Keep this reference for future communication"
+    },
+    "navigation": {
+      "previous": "Previous",
+      "next": "Next",
+      "confirming": "Confirming...",
+      "confirmBooking": "Confirm Booking"
+    },
+    "completion": {
+      "success": "Booking Confirmed Successfully!",
+      "thankYou": "Thank you. Booking details will be sent to your email shortly.",
+      "newConsultation": "Book New Consultation"
+    },
+    "services": {
+      "administrative-cases": "Administrative Cases",
+      "labor-disputes": "Labor Disputes",
+      "rental-cases": "Rental Cases",
+      "contract-drafting": "Contract Drafting",
+      "civil-cases": "Civil Cases",
+      "criminal-cases": "Criminal Cases",
+      "commercial-cases": "Commercial Cases",
+      "personal-status": "Personal Status Cases",
+      "arbitration": "Arbitration",
+      "penal-cases": "Penal Cases",
+      "debt-collection": "Debt Collection",
+      "administrative-services": "Administrative Services"
+    }
+  }
+}
