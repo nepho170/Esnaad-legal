@@ -225,7 +225,7 @@ export default function About() {
 
         {/* Responsibility to Clients */}
         <section className="mb-20">
-          <div className="bg-light rounded-xl p-8">
+          <div className="bg-light rounded-xl p-6 sm:p-8">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-heading font-bold text-primary mb-4">
                 {t("about.responsibility.title")}
@@ -233,13 +233,13 @@ export default function About() {
             </div>
 
             <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-lg p-8 shadow-medium">
+              <div className="bg-white rounded-lg p-4 sm:p-8 shadow-medium">
                 <div className="flex items-start mb-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mr-6 flex-shrink-0">
-                    <Scale className="w-8 h-8 text-primary" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center mr-4 sm:mr-6 flex-shrink-0">
+                    <Scale className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
                   </div>
                   <div>
-                    <p className="text-gray-700 leading-relaxed text-lg">
+                    <p className="text-gray-700 leading-relaxed text-base sm:text-lg">
                       {t("about.responsibility.description")}
                     </p>
                   </div>
