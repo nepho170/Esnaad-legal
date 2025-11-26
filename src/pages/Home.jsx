@@ -8,7 +8,7 @@ import History from "../components/home/History";
 
 export default function Home() {
   return (
-    <div className="relative pt-24">
+    <div className="relative pt-24 overflow-x-hidden">
       <Hero />
       <About />
       <Services />

@@ -41,7 +41,7 @@ export default function Header() {
       dir={isRTL ? "rtl" : "ltr"}
     >
       <div
-        className={`max-w-6xl mx-auto px-6 h-full flex items-center transition-all duration-500 ${
+        className={`max-w-6xl mx-auto px-2 sm:px-4 h-full flex items-center transition-all duration-500 ${
           !scrolled && isHomePage ? "text-white drop-shadow-lg" : "text-white"
         } ${isRTL ? "flex-row-reverse" : ""}`}
       >
@@ -55,7 +55,8 @@ export default function Header() {
               <img
                 src={esnaadLogo}
                 alt="Esnaad Legal Consultancy"
-                className="h-28 w-auto"
+                style={{ height: "8rem" }}
+                className="w-auto"
               />
             </div>
           </Link>
