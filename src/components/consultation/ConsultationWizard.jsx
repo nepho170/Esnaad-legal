@@ -44,12 +44,12 @@ const STEPS = [
 function StepIndicator({ currentStep, language, t }) {
   return (
     <div className="mb-8">
-      <div className="w-full overflow-x-auto scrollbar-hide">
-        <div className="flex items-center justify-center gap-y-2 mb-4 px-2 min-w-[340px] sm:min-w-0">
+      <div className="w-full">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-4 px-2">
           {STEPS.map((step, index) => (
             <div key={step.id} className="flex items-center">
               <div
-                className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs md:text-sm font-medium ${
+                className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center text-sm md:text-base font-medium ${
                   step.id < currentStep
                     ? "bg-green-500 text-white"
                     : step.id === currentStep
@@ -241,40 +241,7 @@ function Step2ServiceType({ register, watch, errors, language, t }) {
   );
 }
 
-function Step3Payment({
-  register,
-  watch,
-  errors,
-  language,
-  setPaymentReceipt,
-  paymentReceipt,
-  t,
-}) {
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      // Validate file size (max 10MB)
-      if (file.size > 10 * 1024 * 1024) {
-        alert(t("consultation.step3.fileTooLarge"));
-        return;
-      }
-
-      // Validate file type
-      const allowedTypes = [
-        "image/jpeg",
-        "image/png",
-        "image/jpg",
-        "application/pdf",
-      ];
-      if (!allowedTypes.includes(file.type)) {
-        alert(t("consultation.step3.invalidFileType"));
-        return;
-      }
-
-      setPaymentReceipt(file);
-    }
-  };
-
+function Step3Schedule({ register, watch, errors, language, t }) {
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
@@ -284,143 +251,16 @@ function Step3Payment({
         <p className="text-gray-600">{t("consultation.step3.subtitle")}</p>
       </div>
 
-      {/* Bank Details */}
-      <div className="bg-light rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-          <CreditCard className="w-5 h-5 mr-2" />
-          {t("consultation.step3.bankDetails")}
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              {t("consultation.step3.bankName")}
-            </label>
-            <p className="text-gray-900 font-medium">Emirates NBD</p>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              {t("consultation.step3.accountNumber")}
-            </label>
-            <p className="text-gray-900 font-medium">1234567890</p>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              {t("consultation.step3.accountName")}
-            </label>
-            <p className="text-gray-900 font-medium">
-              Esnaad Legal Consultancy
-            </p>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              IBAN
-            </label>
-            <p className="text-gray-900 font-medium">AE070331234567890</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Payment Confirmation */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
-          {t("consultation.step3.paymentReference")}{" "}
-          <span className="text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          {...register("paymentReference", {
-            required: t("consultation.step3.referenceRequired"),
-          })}
-          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent ${
-            errors.paymentReference ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder={t("consultation.step3.paymentReferencePlaceholder")}
-        />
-        {errors.paymentReference && (
-          <p className="mt-1 text-sm text-red-600">
-            {errors.paymentReference.message}
-          </p>
-        )}
-      </div>
-
-      {/* Upload Receipt */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
-          {t("consultation.step3.uploadReceipt")}
-        </label>
-        <div
-          className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
-            paymentReceipt ? "border-green-300 bg-green-50" : "border-gray-300"
-          }`}
-        >
-          <Upload
-            className={`w-8 h-8 mx-auto mb-4 ${
-              paymentReceipt ? "text-green-500" : "text-gray-400"
-            }`}
-          />
-          <input
-            type="file"
-            accept="image/*,.pdf"
-            onChange={handleFileUpload}
-            className="hidden"
-            id="receipt-upload"
-          />
-          {!paymentReceipt ? (
-            <>
-              <label
-                htmlFor="receipt-upload"
-                className="cursor-pointer text-primary hover:text-primary/80"
-              >
-                {t("consultation.step3.chooseFile")}
-              </label>
-              <p className="text-sm text-gray-500 mt-2">
-                {t("consultation.step3.fileFormat")}
-              </p>
-            </>
-          ) : (
-            <div className="space-y-2">
-              <CheckCircle className="w-8 h-8 text-green-500 mx-auto" />
-              <p className="text-sm font-medium text-green-600">
-                {paymentReceipt.name}
-              </p>
-              <p className="text-xs text-gray-500">
-                {(paymentReceipt.size / 1024 / 1024).toFixed(2)} MB
-              </p>
-              <button
-                type="button"
-                onClick={() => setPaymentReceipt(null)}
-                className="text-sm text-red-600 hover:text-red-700 underline"
-              >
-                {t("consultation.step3.removeFile")}
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Step4Schedule({ register, watch, errors, language, t }) {
-  return (
-    <div className="space-y-6">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          {t("consultation.step4.title")}
-        </h2>
-        <p className="text-gray-600">{t("consultation.step4.subtitle")}</p>
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-3">
-            {t("consultation.step4.preferredDate")}{" "}
+            {t("consultation.step3.preferredDate")}{" "}
             <span className="text-red-500">*</span>
           </label>
           <input
             type="date"
             {...register("preferredDate", {
-              required: t("consultation.step4.dateRequired"),
+              required: t("consultation.step3.dateRequired"),
             })}
             min={new Date().toISOString().split("T")[0]}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent ${
@@ -436,35 +276,35 @@ function Step4Schedule({ register, watch, errors, language, t }) {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-3">
-            {t("consultation.step4.preferredTime")}{" "}
+            {t("consultation.step3.preferredTime")}{" "}
             <span className="text-red-500">*</span>
           </label>
           <select
             {...register("preferredTime", {
-              required: t("consultation.step4.timeRequired"),
+              required: t("consultation.step3.timeRequired"),
             })}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent ${
               errors.preferredTime ? "border-red-500" : "border-gray-300"
             }`}
           >
-            <option value="">{t("consultation.step4.selectTime")}</option>
+            <option value="">{t("consultation.step3.selectTime")}</option>
             <option value="09:00">
-              {t("consultation.step4.timeSlots.0900")}
+              {t("consultation.step3.timeSlots.0900")}
             </option>
             <option value="10:00">
-              {t("consultation.step4.timeSlots.1000")}
+              {t("consultation.step3.timeSlots.1000")}
             </option>
             <option value="11:00">
-              {t("consultation.step4.timeSlots.1100")}
+              {t("consultation.step3.timeSlots.1100")}
             </option>
             <option value="14:00">
-              {t("consultation.step4.timeSlots.1400")}
+              {t("consultation.step3.timeSlots.1400")}
             </option>
             <option value="15:00">
-              {t("consultation.step4.timeSlots.1500")}
+              {t("consultation.step3.timeSlots.1500")}
             </option>
             <option value="16:00">
-              {t("consultation.step4.timeSlots.1600")}
+              {t("consultation.step3.timeSlots.1600")}
             </option>
           </select>
           {errors.preferredTime && (
@@ -478,14 +318,14 @@ function Step4Schedule({ register, watch, errors, language, t }) {
   );
 }
 
-function Step5Method({ register, watch, errors, language, t }) {
+function Step4Method({ register, watch, errors, language, t }) {
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          {t("consultation.step5.title")}
+          {t("consultation.step4.title")}
         </h2>
-        <p className="text-gray-600">{t("consultation.step5.subtitle")}</p>
+        <p className="text-gray-600">{t("consultation.step4.subtitle")}</p>
       </div>
 
       <div className="space-y-4">
@@ -495,7 +335,7 @@ function Step5Method({ register, watch, errors, language, t }) {
             type="radio"
             value="phone"
             {...register("consultationMethod", {
-              required: t("consultation.step5.methodRequired"),
+              required: t("consultation.step4.methodRequired"),
             })}
             className="mt-1 mr-3"
           />
@@ -503,16 +343,15 @@ function Step5Method({ register, watch, errors, language, t }) {
             <div className="flex items-center mb-2">
               <Phone className="w-5 h-5 text-primary mr-2" />
               <h3 className="text-lg font-semibold text-gray-900">
-                {t("consultation.step5.methods.phone.title")}
+                {t("consultation.step4.methods.phone.title")}
               </h3>
             </div>
             <p className="text-gray-600">
-              {t("consultation.step5.methods.phone.description")}
+              {t("consultation.step4.methods.phone.description")}
             </p>
             <p className="text-sm text-gray-500 mt-1">+971 2 622 2210</p>
           </div>
         </label>
-
         {/* Video Meeting */}
         <label className="flex items-start p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-primary transition-colors">
           <input
@@ -525,11 +364,11 @@ function Step5Method({ register, watch, errors, language, t }) {
             <div className="flex items-center mb-2">
               <Video className="w-5 h-5 text-primary mr-2" />
               <h3 className="text-lg font-semibold text-gray-900">
-                {t("consultation.step5.methods.video.title")}
+                {t("consultation.step4.methods.video.title")}
               </h3>
             </div>
             <p className="text-gray-600">
-              {t("consultation.step5.methods.video.description")}
+              {t("consultation.step4.methods.video.description")}
             </p>
           </div>
         </label>
@@ -546,11 +385,11 @@ function Step5Method({ register, watch, errors, language, t }) {
             <div className="flex items-center mb-2">
               <MapPin className="w-5 h-5 text-primary mr-2" />
               <h3 className="text-lg font-semibold text-gray-900">
-                {t("consultation.step5.methods.inPerson.title")}
+                {t("consultation.step4.methods.inPerson.title")}
               </h3>
             </div>
             <p className="text-gray-600">
-              {t("consultation.step5.methods.inPerson.description")}
+              {t("consultation.step4.methods.inPerson.description")}
             </p>
             <p className="text-sm text-gray-500 mt-1">
               Hamdan Street, Al Building No. 6, Abu Dhabi
@@ -568,14 +407,14 @@ function Step5Method({ register, watch, errors, language, t }) {
   );
 }
 
-function Step6Duration({ register, watch, errors, language, t }) {
+function Step5Duration({ register, watch, errors, language, t }) {
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          {t("consultation.step6.title")}
+          {t("consultation.step5.title")}
         </h2>
-        <p className="text-gray-600">{t("consultation.step6.subtitle")}</p>
+        <p className="text-gray-600">{t("consultation.step5.subtitle")}</p>
       </div>
 
       <div className="bg-gradient-to-br from-primary to-primary/90 rounded-lg p-6 text-white">
@@ -583,10 +422,10 @@ function Step6Duration({ register, watch, errors, language, t }) {
           <Clock className="w-8 h-8 mr-3" />
           <div>
             <h3 className="text-xl font-semibold">
-              {t("consultation.step6.standardPackage")}
+              {t("consultation.step5.standardPackage")}
             </h3>
             <p className="text-white/90">
-              {t("consultation.step6.optimalSolution")}
+              {t("consultation.step5.optimalSolution")}
             </p>
           </div>
         </div>
@@ -594,26 +433,26 @@ function Step6Duration({ register, watch, errors, language, t }) {
         <div className="space-y-3 mb-6">
           <div className="flex items-center">
             <Check className="w-5 h-5 mr-3" />
-            <span>{t("consultation.step6.features.sessions")}</span>
+            <span>{t("consultation.step5.features.sessions")}</span>
           </div>
           <div className="flex items-center">
             <Check className="w-5 h-5 mr-3" />
-            <span>{t("consultation.step6.features.duration")}</span>
+            <span>{t("consultation.step5.features.duration")}</span>
           </div>
           <div className="flex items-center">
             <Check className="w-5 h-5 mr-3" />
-            <span>{t("consultation.step6.features.flexibility")}</span>
+            <span>{t("consultation.step5.features.flexibility")}</span>
           </div>
           <div className="flex items-center">
             <Check className="w-5 h-5 mr-3" />
-            <span>{t("consultation.step6.features.report")}</span>
+            <span>{t("consultation.step5.features.report")}</span>
           </div>
         </div>
 
         <div className="border-t border-white/20 pt-4">
           <div className="flex justify-between items-center">
             <span className="text-lg">
-              {t("consultation.step6.totalPrice")}
+              {t("consultation.step5.totalPrice")}
             </span>
             {/* <span className="text-2xl font-bold">2,000 AED</span> */}
           </div>
@@ -625,17 +464,88 @@ function Step6Duration({ register, watch, errors, language, t }) {
           <input
             type="checkbox"
             {...register("packageAccepted", {
-              required: t("consultation.step6.packageRequired"),
+              required: t("consultation.step5.packageRequired"),
             })}
             className="mr-3"
           />
           <span className="text-gray-700">
-            {t("consultation.step6.packageTerms")}
+            {t("consultation.step5.packageTerms")}
           </span>
         </label>
         {errors.packageAccepted && (
           <p className="mt-1 text-sm text-red-600">
             {errors.packageAccepted.message}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+function Step6Payment({ register, watch, errors, language, t }) {
+  return (
+    <div className="space-y-6">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          {t("consultation.step6.title")}
+        </h2>
+        <p className="text-gray-600">{t("consultation.step6.subtitle")}</p>
+      </div>
+
+      {/* Bank Details */}
+      <div className="bg-light rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <CreditCard className="w-5 h-5 mr-2" />
+          {t("consultation.step6.bankDetails")}
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              {t("consultation.step6.bankName")}
+            </label>
+            <p className="text-gray-900 font-medium">Emirates NBD</p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              {t("consultation.step6.accountNumber")}
+            </label>
+            <p className="text-gray-900 font-medium">1234567890</p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              {t("consultation.step6.accountName")}
+            </label>
+            <p className="text-gray-900 font-medium">
+              Esnaad Legal Consultancy
+            </p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              IBAN
+            </label>
+            <p className="text-gray-900 font-medium">AE070331234567890</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Payment Confirmation */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-3">
+          {t("consultation.step6.paymentReference")}{" "}
+          <span className="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          {...register("paymentReference", {
+            required: t("consultation.step6.referenceRequired"),
+          })}
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-gold focus:border-transparent ${
+            errors.paymentReference ? "border-red-500" : "border-gray-300"
+          }`}
+          placeholder={t("consultation.step6.paymentReferencePlaceholder")}
+        />
+        {errors.paymentReference && (
+          <p className="mt-1 text-sm text-red-600">
+            {errors.paymentReference.message}
           </p>
         )}
       </div>
@@ -964,7 +874,6 @@ export default function ConsultationWizard() {
   const { t } = useTranslation();
   const language = lng || "en";
   const [currentStep, setCurrentStep] = useState(1);
-  const [paymentReceipt, setPaymentReceipt] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
 
@@ -1019,6 +928,9 @@ export default function ConsultationWizard() {
         message: `
 Consultation Booking Details:
 Booking Reference: ${bookingRef}
+Client Name: ${data.fullName}   
+Client Email: ${data.email}     
+Client Phone: ${data.phone}     
 
 Service: ${serviceName}
 Description: ${data.description || "Not provided"}
@@ -1028,7 +940,6 @@ Preferred Time: ${data.preferredTime}
 Consultation Method: ${data.consultationMethod}
 
 Payment Reference: ${data.paymentReference}
-Payment Receipt: ${paymentReceipt ? "Uploaded" : "Not provided"}
 
 This is a consultation booking request via the website.
         `,
@@ -1174,19 +1085,18 @@ Esnaad Legal Consultancy Team
               t={t}
             />
           )}
+
           {currentStep === 3 && (
-            <Step3Payment
+            <Step3Schedule
               register={register}
               watch={watch}
               errors={errors}
               language={language}
-              setPaymentReceipt={setPaymentReceipt}
-              paymentReceipt={paymentReceipt}
               t={t}
             />
           )}
           {currentStep === 4 && (
-            <Step4Schedule
+            <Step4Method
               register={register}
               watch={watch}
               errors={errors}
@@ -1195,7 +1105,7 @@ Esnaad Legal Consultancy Team
             />
           )}
           {currentStep === 5 && (
-            <Step5Method
+            <Step5Duration
               register={register}
               watch={watch}
               errors={errors}
@@ -1204,7 +1114,7 @@ Esnaad Legal Consultancy Team
             />
           )}
           {currentStep === 6 && (
-            <Step6Duration
+            <Step6Payment
               register={register}
               watch={watch}
               errors={errors}

@@ -222,7 +222,7 @@
       "description": "Case Description",
       "descriptionPlaceholder": "Describe your legal case or inquiry..."
     },
-    "step3": {
+    "step6": {
       "title": "Payment Information",
       "subtitle": "Complete payment to proceed with your consultation",
       "bankDetails": "Bank Details",
@@ -240,7 +240,7 @@
       "removeFile": "Remove File"
     },
 
-    "step4": {
+    "step3": {
       "title": "Schedule Your Consultation",
       "subtitle": "Select your preferred date and time",
       "preferredDate": "Preferred Date",
@@ -258,7 +258,7 @@
         "1600": "4:00 PM"
       }
     },
-    "step5": {
+    "step4": {
       "title": "Consultation Method",
       "subtitle": "Choose how you'd like to receive your consultation",
       "methodRequired": "Please select a consultation method",
@@ -277,7 +277,7 @@
         }
       }
     },
-    "step6": {
+    "step5": {
       "title": "Consultation Package",
       "subtitle": "Review your consultation package details",
       "standardPackage": "Standard Consultation Package",
