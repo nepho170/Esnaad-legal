@@ -62,18 +62,13 @@ export default function ContactForm() {
 
     // Prepare the email data to match your EmailJS template variables
     const emailData = {
-      name: data.fullName, // matches {{name}} in your template
-      email: data.email, // matches {{email}} in your template
-      message: `${t("contact.form.phoneLabel")}: ${data.phone}
-${t("contact.form.serviceInterestLabel")}: ${serviceLabel}
-${t("contact.form.preferredContactLabel")}: ${t(
-        `contact.form.contactMethod.${data.preferredContact}`
-      )}
-
-${t("contact.form.messageLabel")}:
-${data.message}`, // matches {{message}} in your template
-      title: serviceLabel, // matches {{title}} in subject
-      reply_to: data.email,
+      from_name: data.fullName, // matches {{from_name}} in your template
+      from_email: data.email, // matches {{from_email}} in your template
+      phone: data.phone, // matches {{phone}} in your template
+      service: serviceLabel, // matches {{service}} in your template
+      preferred_contact: data.preferredContact ? t(`contact.form.contactMethod.${data.preferredContact}`) : t("contact.form.preferredTime.any"), // matches {{preferred_contact}} in your template
+      message: data.message, // matches {{message}} in your template
+      to_email: emailConfig.businessEmail, // matches {{to_email}} in your template
     };
 
     try {
@@ -95,8 +90,12 @@ ${data.message}`, // matches {{message}} in your template
 
       if (error.status === 403) {
         errorMessage = t("contact.form.errors.authorization");
-      } else if (error.status === 400) {
+      } else if (error.status === 400 || error.status === 422) {
         errorMessage = t("contact.form.errors.invalidData");
+        if (error.text) {
+          console.error("EmailJS error details:", error.text);
+          errorMessage += " " + error.text;
+        }
       }
 
       alert(errorMessage);
