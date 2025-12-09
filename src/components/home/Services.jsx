@@ -11,6 +11,7 @@ function ServiceCard({ service, language }) {
     language === "ar" ? service.descriptionAr : service.descriptionEn;
   const cardRef = React.useRef(null);
   const [visible, setVisible] = React.useState(false);
+  const [flipped, setFlipped] = React.useState(false);
   React.useEffect(() => {
     if (!cardRef.current) return;
     const observer = new window.IntersectionObserver(
@@ -26,33 +27,58 @@ function ServiceCard({ service, language }) {
     return () => observer.disconnect();
   }, []);
   return (
-    <Link
+    <div
       ref={cardRef}
-      to={`/${language}/services/${service.id}`}
-      className={`group bg-beige-50 hover:bg-white rounded-xl p-6 shadow-small hover:shadow-large transition-all duration-700 hover:-translate-y-2 border border-beige-200 hover:border-primary/30 w-[280px] h-[280px] flex-shrink-0 flex flex-col ${
+      className={`group bg-beige-50 hover:bg-white rounded-xl shadow-small hover:shadow-large transition-all duration-700 hover:-translate-y-2 border border-beige-200 hover:border-primary/30 w-[280px] h-[280px] flex-shrink-0 flex flex-col relative ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
+      style={{ perspective: "1000px" }}
     >
-      <div className="flex items-center mb-4">
-        <div className="w-12 h-12 bg-primary/10 group-hover:bg-gold/20 rounded-lg flex items-center justify-center mr-4 transition-colors duration-300">
-          {Icon && (
-            <Icon className="w-6 h-6 text-primary group-hover:text-gold transition-colors duration-300" />
-          )}
+      <div
+        className="w-full h-full transition-transform duration-700"
+        style={{
+          transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+          transformStyle: "preserve-3d",
+        }}
+      >
+        {/* Front */}
+        <div
+          className="absolute inset-0 w-full h-full bg-beige-50 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer"
+          onClick={() => setFlipped(!flipped)}
+          style={{ backfaceVisibility: "hidden" }}
+        >
+          <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+            {Icon && <Icon className="w-8 h-8 text-primary" />}
+          </div>
+          <h3 className="text-lg font-semibold text-dark text-center">
+            {title}
+          </h3>
+        </div>
+        {/* Back */}
+        <div
+          className="absolute inset-0 w-full h-full bg-white rounded-xl p-6 flex flex-col"
+          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+        >
+          <h3 className="text-lg font-semibold text-primary mb-3 flex-shrink-0">
+            {title}
+          </h3>
+          <p className="text-brown-700 mb-4 leading-relaxed flex-grow text-sm">
+            {description}
+          </p>
+          <Link
+            to={`/${language}/services/${service.id}`}
+            className="text-gold hover:text-gold/80 font-medium flex items-center hover:translate-x-1 transition-transform duration-200 flex-shrink-0 mt-auto"
+          >
+            {language === "ar" ? "اقرأ المزيد" : "Learn More"}
+            <LucideIcons.ArrowRight
+              className={`w-4 h-4 ml-2 ${
+                language === "ar" ? "rotate-180" : ""
+              }`}
+            />
+          </Link>
         </div>
       </div>
-      <h3 className="text-lg font-semibold text-dark mb-3 group-hover:text-primary transition-colors duration-300 flex-shrink-0">
-        {title}
-      </h3>
-      <p className="text-brown-700 mb-4 leading-relaxed flex-grow line-clamp-4 text-sm">
-        {description}
-      </p>
-      <div className="text-gold hover:text-gold/80 font-medium flex items-center group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0 mt-auto">
-        {language === "ar" ? "اقرأ المزيد" : "Learn More"}
-        <LucideIcons.ArrowRight
-          className={`w-4 h-4 ml-2 ${language === "ar" ? "rotate-180" : ""}`}
-        />
-      </div>
-    </Link>
+    </div>
   );
 }
 

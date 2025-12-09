@@ -41,7 +41,7 @@ export default function Header() {
       dir={isRTL ? "rtl" : "ltr"}
     >
       <div
-        className={`max-w-6xl mx-auto px-2 sm:px-4 h-full flex items-center transition-all duration-500 ${
+        className={`w-full px-4 h-full flex items-center transition-all duration-500 ${
           !scrolled && isHomePage ? "text-white drop-shadow-lg" : "text-white"
         } ${isRTL ? "flex-row-reverse" : ""}`}
       >
@@ -58,16 +58,44 @@ export default function Header() {
                 style={{ height: "8rem" }}
                 className="w-auto"
               />
+              <span className="hidden lg:block text-xl font-bold leading-tight">
+                {t("header.companyName")}
+              </span>
             </div>
           </Link>
         </div>
         {/* Center: Nav */}
         <nav className="hidden md:flex gap-6 items-center flex-1 justify-center">
-          <Link to={`/${lang}`}>{t("header.home")}</Link>
-          <Link to={`/${lang}/services`}>{t("header.services")}</Link>
-          <Link to={`/${lang}/about`}>{t("header.about")}</Link>
-          <Link to={`/${lang}/consultation`}>{t("header.consultation")}</Link>
-          <Link to={`/${lang}/contact`}>{t("header.contact")}</Link>
+          <Link
+            to={`/${lang}`}
+            className="hover:text-gold transition-colors duration-200"
+          >
+            {t("header.home")}
+          </Link>
+          <Link
+            to={`/${lang}/services`}
+            className="hover:text-gold transition-colors duration-200"
+          >
+            {t("header.services")}
+          </Link>
+          <Link
+            to={`/${lang}/about`}
+            className="hover:text-gold transition-colors duration-200"
+          >
+            {t("header.about")}
+          </Link>
+          <Link
+            to={`/${lang}/consultation`}
+            className="hover:text-gold transition-colors duration-200"
+          >
+            {t("header.consultation")}
+          </Link>
+          <Link
+            to={`/${lang}/contact`}
+            className="hover:text-gold transition-colors duration-200"
+          >
+            {t("header.contact")}
+          </Link>
         </nav>
         {/* Right: Buttons */}
         <div className="flex items-center gap-4 flex-shrink-0">

@@ -22,6 +22,8 @@ export const emailConfig = {
 // {{phone}} - Sender's phone number
 // {{service}} - Selected service
 // {{preferred_contact}} - Preferred contact method
+// {{subject}} - Email subject
+// {{preferred_time}} - Preferred contact time
 // {{message}} - Message content
 // {{to_email}} - Your business email (destination)
 

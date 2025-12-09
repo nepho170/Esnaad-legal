@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams, Link } from "react-router-dom";
 import heroImage from "/images/hero-section.png";
@@ -7,6 +7,22 @@ export default function Hero() {
   const { t, i18n } = useTranslation();
   const { lng } = useParams();
   const currentLang = i18n.language || "en";
+  const [displayText, setDisplayText] = useState("");
+  const fullText = t("hero.title");
+
+  useEffect(() => {
+    setDisplayText(""); // reset on language change
+    let i = 0;
+    const timer = setInterval(() => {
+      if (i < fullText.length) {
+        setDisplayText(fullText.slice(0, i + 1));
+        i++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 100); // typing speed
+    return () => clearInterval(timer);
+  }, [fullText]);
 
   return (
     <section
@@ -33,7 +49,8 @@ export default function Hero() {
             fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
           }}
         >
-          {t("hero.title")}
+          {displayText}
+          <span className="animate-pulse">|</span>
         </h1>
         <p
           className={`text-lg md:text-xl mb-8 leading-relaxed font-light ${

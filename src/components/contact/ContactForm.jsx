@@ -66,7 +66,13 @@ export default function ContactForm() {
       from_email: data.email, // matches {{from_email}} in your template
       phone: data.phone, // matches {{phone}} in your template
       service: serviceLabel, // matches {{service}} in your template
-      preferred_contact: data.preferredContact ? t(`contact.form.contactMethod.${data.preferredContact}`) : t("contact.form.preferredTime.any"), // matches {{preferred_contact}} in your template
+      preferred_contact: data.preferredContact
+        ? t(`contact.form.contactMethod.${data.preferredContact}`)
+        : t("contact.form.preferredTime.any"), // matches {{preferred_contact}} in your template
+      subject: data.subject, // matches {{subject}} in your template
+      preferred_time: data.preferredTime
+        ? t(`contact.form.preferredTime.${data.preferredTime}`)
+        : t("contact.form.preferredTime.any"), // matches {{preferred_time}} in your template
       message: data.message, // matches {{message}} in your template
       to_email: emailConfig.businessEmail, // matches {{to_email}} in your template
     };
@@ -82,6 +88,7 @@ export default function ContactForm() {
       console.log("Email sent successfully:", result);
       setIsSubmitted(true);
       reset();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
       console.error("Email sending error:", error);
 
