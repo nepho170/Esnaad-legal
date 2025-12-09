@@ -45,7 +45,7 @@ function LanguageOutlet() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Esnaad-legal">
       <Routes>
         <Route path="/" element={<Navigate to="/en" replace />} />
         <Route path=":lng" element={<LanguageOutlet />}>

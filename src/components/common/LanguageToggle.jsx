@@ -11,10 +11,10 @@ export default function LanguageToggle() {
     localStorage.setItem("esnaad:lang", newLang);
     document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = newLang === "ar" ? "ar" : "en";
-    // update URL path: keep current path but replace leading /en or /ar
+    // update URL path: keep current path but replace leading /Esnaad-legal/en or /Esnaad-legal/ar
     const path = window.location.pathname;
-    const newPath = path.replace(/^\/(en|ar)/, "");
-    window.history.replaceState({}, "", `/${newLang}${newPath}`);
+    const newPath = path.replace(/^\/Esnaad-legal\/(en|ar)/, "");
+    window.history.replaceState({}, "", `/Esnaad-legal/${newLang}${newPath}`);
   };
 
   return (
