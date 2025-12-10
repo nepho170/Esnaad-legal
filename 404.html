@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <title>Esnaad Legal</title>
     <script type="text/javascript">
-      // Simple SPA redirect for GitHub Pages
-      var segmentCount = 1; // For project repositories like username.github.io/repo-name
+      // Redirect all 404s to index.html for SPA routing
       var l = window.location;
-      var pathArray = l.pathname.split('/');
-      var basePath = pathArray.slice(0, segmentCount + 1).join('/');
+      var basePath = '/Esnaad-legal';
 
-      // Redirect to index.html with the original path as a query parameter
+      // Extract the path after the base
+      var path = l.pathname.replace(basePath, '') || '/';
+
+      // Redirect to index.html with the path as a query parameter
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        basePath + '/?/' +
-        pathArray.slice(segmentCount + 1).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        basePath + '/?path=' + encodeURIComponent(path) +
+        (l.search ? '&search=' + encodeURIComponent(l.search.slice(1)) : '') +
         l.hash
       );
     </script>
   </head>
   <body>
-    <p>Redirecting to the main page...</p>
+    <p>Redirecting...</p>
   </body>
 </html>
