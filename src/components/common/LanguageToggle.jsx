@@ -1,8 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function LanguageToggle() {
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const current = i18n.language || "en";
 
   const toggle = () => {
@@ -11,10 +14,12 @@ export default function LanguageToggle() {
     localStorage.setItem("esnaad:lang", newLang);
     document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = newLang === "ar" ? "ar" : "en";
-    // update URL path and navigate to trigger re-render
-    const path = window.location.pathname;
-    const newPath = path.replace(/^\/Esnaad-legal\/(en|ar)/, "");
-    window.location.href = `/Esnaad-legal/${newLang}${newPath}`;
+    
+    // Get current path without language prefix
+    const pathWithoutLang = location.pathname.replace(/^\/(en|ar)/, "");
+    
+    // Navigate to the new language path
+    navigate(`/${newLang}${pathWithoutLang}`, { replace: true });
   };
 
   return (
