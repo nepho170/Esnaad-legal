@@ -179,7 +179,6 @@ export default function About() {
         className="relative py-20 w-full parallax-bg"
         style={{
           backgroundImage: `url(${img})`,
-          backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
