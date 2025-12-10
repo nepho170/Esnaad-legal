@@ -94,7 +94,10 @@ export default function History() {
       <div className="absolute inset-0 bg-black/50"></div>
       <div className="max-w-6xl mx-auto px-4">
         <motion.div className="text-center mb-16" variants={itemVariants}>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+          <h2
+            className="text-3xl md:text-4xl font-heading font-bold mb-4"
+            style={{ color: "#ffffff" }}
+          >
             {t("history.title")}
           </h2>
         </motion.div>
@@ -140,7 +143,8 @@ export default function History() {
                   transition={{ delay: 1 + index * 0.2, duration: 0.6 }}
                 >
                   <motion.div
-                    className="bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-medium"
+                    className="backdrop-blur-sm rounded-lg p-6 shadow-medium"
+                    style={{ backgroundColor: "rgba(245, 242, 233, 0.85)" }}
                     whileHover={{
                       scale: 1.02,
                       boxShadow:
@@ -184,7 +188,8 @@ export default function History() {
                 transition={{ delay: 1.4, duration: 0.6 }}
               >
                 <motion.div
-                  className="bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-medium"
+                  className="backdrop-blur-sm rounded-lg p-6 shadow-medium"
+                  style={{ backgroundColor: "rgba(245, 242, 233, 0.85)" }}
                   whileHover={{
                     scale: 1.02,
                     boxShadow:

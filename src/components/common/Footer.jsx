@@ -8,7 +8,7 @@ export default function Footer() {
   const lang = lng || "en";
 
   return (
-    <footer className="bg-primary text-gray-200 py-10 mt-16">
+    <footer className="bg-primary text-gray-200 py-10">
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h4 className="text-white font-semibold">Esnaad</h4>

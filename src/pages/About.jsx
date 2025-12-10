@@ -15,6 +15,7 @@ import {
   Eye,
   Star,
 } from "lucide-react";
+import img from "/images/history-section.png";
 
 export default function About() {
   const { t, i18n } = useTranslation();
@@ -197,17 +198,30 @@ export default function About() {
             ))}
           </div>
         </section> */}
+      </div>
 
-        {/* Why Choose Esnaad */}
-        <section className="mb-20">
-          <h2 className="text-3xl font-heading font-bold text-primary mb-12 text-center">
+      {/* Why Choose Esnaad */}
+      <section
+        className="relative py-20 w-full"
+        style={{
+          backgroundImage: `url(${img})`,
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="relative z-10 max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-12 text-center">
             {t("about.whyChoose.title")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {whyChooseUs.map((reason, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl p-6 shadow-medium hover:shadow-large transition-shadow duration-300"
+                className="backdrop-blur-sm rounded-lg p-6 shadow-medium hover:shadow-large transition-shadow duration-300"
+                style={{ backgroundColor: "rgba(245, 242, 233, 0.85)" }}
               >
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <reason.icon className="w-6 h-6 text-primary" />
@@ -221,8 +235,10 @@ export default function About() {
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
+      <div className="max-w-6xl mx-auto px-4">
         {/* Responsibility to Clients */}
         <section className="mb-20">
           <div className="bg-light rounded-xl p-6 sm:p-8">
@@ -250,7 +266,7 @@ export default function About() {
         </section>
 
         {/* Call to Action */}
-        <section>
+        <section className="mb-20">
           <div className="bg-gradient-to-r from-primary to-primary/90 rounded-xl p-8 text-white text-center">
             <h2 className="text-2xl font-heading font-bold mb-4">
               {t("about.cta.title")}
