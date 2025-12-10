@@ -16,11 +16,25 @@ import {
   Star,
 } from "lucide-react";
 import img from "/images/history-section.png";
+import { useState, useEffect } from "react";
 
 export default function About() {
   const { t, i18n } = useTranslation();
   const { lng } = useParams();
   const currentLang = i18n.language || "en";
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   // const teamCredentials = [
   //   {
@@ -205,7 +219,7 @@ export default function About() {
         className="relative py-20 w-full"
         style={{
           backgroundImage: `url(${img})`,
-          backgroundAttachment: "fixed",
+          backgroundAttachment: isMobile ? "scroll" : "fixed",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
