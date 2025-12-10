@@ -6,8 +6,6 @@ import {
   Navigate,
   useParams,
   Outlet,
-  useNavigate,
-  useLocation,
 } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Header from "./components/common/Header";
@@ -45,42 +43,22 @@ function LanguageOutlet() {
   );
 }
 
-function AppContent() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    // Handle redirects from 404.html
-    const urlParams = new URLSearchParams(location.search);
-    const redirectPath = urlParams.get('path');
-
-    if (redirectPath && redirectPath !== '/' && location.pathname === '/') {
-      // Remove the query parameters and navigate to the actual path
-      navigate(redirectPath, { replace: true });
-    }
-  }, [location, navigate]);
-
-  return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/en" replace />} />
-      <Route path=":lng" element={<LanguageOutlet />}>
-        <Route index element={<Home />} />
-        <Route path="services" element={<Services />} />
-        <Route path="services/:serviceId" element={<ServiceDetail />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="consultation" element={<ConsultationSystem />} />
-      </Route>
-      {/* Fallback to English */}
-      <Route path="*" element={<Navigate to="/en" replace />} />
-    </Routes>
-  );
-}
-
 export default function App() {
   return (
     <BrowserRouter basename="/Esnaad-legal">
-      <AppContent />
+      <Routes>
+        <Route path="/" element={<Navigate to="/en" replace />} />
+        <Route path=":lng" element={<LanguageOutlet />}>
+          <Route index element={<Home />} />
+          <Route path="services" element={<Services />} />
+          <Route path="services/:serviceId" element={<ServiceDetail />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="consultation" element={<ConsultationSystem />} />
+        </Route>
+        {/* Fallback to English */}
+        <Route path="*" element={<Navigate to="/en" replace />} />
+      </Routes>
     </BrowserRouter>
   );
 }
