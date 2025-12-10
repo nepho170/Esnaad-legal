@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageToggle from "./LanguageToggle";
+import { Phone } from "lucide-react";
 import esnaadLogo from "/images/esnaad-logo.png";
 
 export default function Header() {
@@ -46,7 +47,13 @@ export default function Header() {
         } ${isRTL ? "flex-row-reverse" : ""}`}
       >
         {/* Left: Logo */}
-        <div className="flex items-center gap-4 flex-shrink-0">
+        <div
+          className={`flex items-center gap-4 flex-shrink-0 ${
+            isRTL
+              ? "absolute right-4 md:relative md:right-auto"
+              : "absolute left-4 md:relative md:left-auto"
+          }`}
+        >
           <Link
             to={`/${lang}`}
             className="flex items-center hover:opacity-80 transition-opacity duration-200"
@@ -58,9 +65,9 @@ export default function Header() {
                 style={{ height: "8rem" }}
                 className="w-auto"
               />
-              <span className="hidden lg:block text-xl font-bold leading-tight">
+              {/* <span className="hidden lg:block text-xl font-bold leading-tight">
                 {t("header.companyName")}
-              </span>
+              </span> */}
             </div>
           </Link>
         </div>
@@ -73,16 +80,16 @@ export default function Header() {
             {t("header.home")}
           </Link>
           <Link
-            to={`/${lang}/services`}
-            className="hover:text-gold transition-colors duration-200"
-          >
-            {t("header.services")}
-          </Link>
-          <Link
             to={`/${lang}/about`}
             className="hover:text-gold transition-colors duration-200"
           >
             {t("header.about")}
+          </Link>
+          <Link
+            to={`/${lang}/services`}
+            className="hover:text-gold transition-colors duration-200"
+          >
+            {t("header.services")}
           </Link>
           <Link
             to={`/${lang}/consultation`}
@@ -98,12 +105,20 @@ export default function Header() {
           </Link>
         </nav>
         {/* Right: Buttons */}
-        <div className="flex items-center gap-4 flex-shrink-0">
+        <div
+          className={`flex items-center gap-4 flex-shrink-0 ${
+            isRTL
+              ? "absolute left-4 md:relative md:left-auto"
+              : "absolute right-4 md:relative md:right-auto"
+          }`}
+        >
           <a
             href="tel:+97126222210"
             className="hidden sm:inline-block px-3 py-2 bg-white/10 rounded hover:bg-white/20"
+            title="+971 2 622 2210"
+            aria-label="Call +971 2 622 2210"
           >
-            +971 2 622 2210
+            <Phone className="w-4 h-4" />
           </a>
           <LanguageToggle />
           {/* Burger Menu Button */}
@@ -148,18 +163,18 @@ export default function Header() {
             {t("header.home")}
           </Link>
           <Link
-            to={`/${lang}/services`}
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-white hover:text-gold transition-colors duration-200 py-2"
-          >
-            {t("header.services")}
-          </Link>
-          <Link
             to={`/${lang}/about`}
             onClick={() => setMobileMenuOpen(false)}
             className="block text-white hover:text-gold transition-colors duration-200 py-2"
           >
             {t("header.about")}
+          </Link>
+          <Link
+            to={`/${lang}/services`}
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-white hover:text-gold transition-colors duration-200 py-2"
+          >
+            {t("header.services")}
           </Link>
           <Link
             to={`/${lang}/consultation`}

@@ -33,6 +33,8 @@ function ServiceCard({ service, language }) {
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
       style={{ perspective: "1000px" }}
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
     >
       <div
         className="w-full h-full transition-transform duration-700"
@@ -43,8 +45,7 @@ function ServiceCard({ service, language }) {
       >
         {/* Front */}
         <div
-          className="absolute inset-0 w-full h-full bg-beige-50 rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer"
-          onClick={() => setFlipped(!flipped)}
+          className="absolute inset-0 w-full h-full bg-beige-50 rounded-xl p-6 flex flex-col items-center justify-center"
           style={{ backfaceVisibility: "hidden" }}
         >
           <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4">

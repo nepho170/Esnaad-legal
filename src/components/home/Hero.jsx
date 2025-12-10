@@ -8,21 +8,46 @@ export default function Hero() {
   const { lng } = useParams();
   const currentLang = i18n.language || "en";
   const [displayText, setDisplayText] = useState("");
+  const [phase, setPhase] = useState("typing");
+  const [index, setIndex] = useState(0);
+  const [pauseCounter, setPauseCounter] = useState(0);
   const fullText = t("hero.title");
 
   useEffect(() => {
-    setDisplayText(""); // reset on language change
-    let i = 0;
-    const timer = setInterval(() => {
-      if (i < fullText.length) {
-        setDisplayText(fullText.slice(0, i + 1));
-        i++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 100); // typing speed
-    return () => clearInterval(timer);
+    setDisplayText("");
+    setPhase("typing");
+    setIndex(0);
+    setPauseCounter(0);
   }, [fullText]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (phase === "typing") {
+        if (index < fullText.length) {
+          setDisplayText(fullText.slice(0, index + 1));
+          setIndex(index + 1);
+        } else {
+          setPhase("pausing");
+          setPauseCounter(0);
+        }
+      } else if (phase === "pausing") {
+        if (pauseCounter < 20) {
+          // 20 * 100ms = 2 seconds
+          setPauseCounter(pauseCounter + 1);
+        } else {
+          setPhase("erasing");
+        }
+      } else if (phase === "erasing") {
+        if (index > 0) {
+          setDisplayText(fullText.slice(0, index - 1));
+          setIndex(index - 1);
+        } else {
+          setPhase("typing");
+        }
+      }
+    }, 100);
+    return () => clearInterval(timer);
+  }, [phase, index, pauseCounter, fullText]);
 
   return (
     <section
@@ -34,11 +59,12 @@ export default function Hero() {
 
       {/* Main content container */}
       <div
-        // 1. MOBILE/DEFAULT: Full width, symmetric padding (px-8)
-        // 2. DESKTOP (md:): Revert to original left positioning (left-16/left-24) and remove symmetric padding (!px-0)
-        className="absolute bottom-12 w-full px-8 z-10 
-                   md:left-16 lg:left-24 md:!px-0 
-                   max-w-2xl"
+        className={`absolute bottom-12 w-full px-8 z-10 
+                   ${
+                     lng === "ar"
+                       ? "md:right-0 md:px-0 md:pr-16 lg:pr-24"
+                       : "md:left-16 lg:left-24 md:!px-0 max-w-2xl"
+                   }`}
       >
         {/* Title and Subtitle remain the same */}
         <h1
@@ -62,9 +88,7 @@ export default function Hero() {
 
         {/* Button container */}
         <div
-          className={`flex flex-col sm:flex-row gap-4 w-full ${
-            lng === "ar" ? "sm:justify-end" : "sm:justify-start"
-          }`}
+          className={`flex flex-col sm:flex-row gap-4 w-full sm:justify-start`}
         >
           {/* CTA 1 */}
           <a

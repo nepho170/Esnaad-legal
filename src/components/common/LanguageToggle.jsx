@@ -11,10 +11,10 @@ export default function LanguageToggle() {
     localStorage.setItem("esnaad:lang", newLang);
     document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = newLang === "ar" ? "ar" : "en";
-    // update URL path: keep current path but replace leading /Esnaad-legal/en or /Esnaad-legal/ar
+    // update URL path and navigate to trigger re-render
     const path = window.location.pathname;
     const newPath = path.replace(/^\/Esnaad-legal\/(en|ar)/, "");
-    window.history.replaceState({}, "", `/Esnaad-legal/${newLang}${newPath}`);
+    window.location.href = `/Esnaad-legal/${newLang}${newPath}`;
   };
 
   return (
@@ -23,7 +23,7 @@ export default function LanguageToggle() {
       className="px-3 py-1 bg-gold text-white rounded hover:bg-yellow-600 transition-colors duration-200"
       onClick={toggle}
     >
-      {current === "en" ? "English" : "العربية"}
+      {current === "en" ? "العربية" : "English"}
     </button>
   );
 }

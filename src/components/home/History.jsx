@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Calendar, User, Award } from "lucide-react";
 import { motion } from "framer-motion";
+import img from "/images/history-section.png";
 
 export default function History() {
   const { t } = useTranslation();
@@ -77,160 +78,69 @@ export default function History() {
 
   return (
     <motion.section
-      className="py-20 bg-white"
+      className="py-20 bg-white relative"
+      style={{
+        backgroundImage: `url(${img})`,
+        backgroundAttachment: "fixed",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/50"></div>
       <div className="max-w-6xl mx-auto px-4">
         <motion.div className="text-center mb-16" variants={itemVariants}>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
             {t("history.title")}
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Founder Info */}
-          <motion.div
-            className="bg-gradient-to-br from-primary to-primary/90 rounded-xl p-8 text-white"
-            variants={founderVariants}
-          >
+        {/* Timeline */}
+        <motion.div variants={timelineVariants}>
+          <div className="relative">
+            {/* Timeline line */}
             <motion.div
-              className="flex items-center mb-6"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              className="absolute left-8 top-0 bottom-0 w-0.5 bg-gold"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                <User className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold">
-                  {t("history.founder")}
-                </h3>
-                <p className="text-white/80">Founder & CEO</p>
-              </div>
-            </motion.div>
+              transition={{ delay: 0.5, duration: 1.2, ease: "easeOut" }}
+              style={{ transformOrigin: "top" }}
+            ></motion.div>
 
-            <motion.div
-              className="bg-white/10 rounded-lg p-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-            >
-              <h4 className="text-lg font-semibold mb-4 flex items-center">
-                <Award className="w-5 h-5 mr-2" />
-                {t("about.founder.qualifications")}
-              </h4>
-              <ul className="space-y-2 text-white/90">
-                {t("about.founder.degrees", { returnObjects: true }).map(
-                  (qual, index) => (
-                    <motion.li
-                      key={index}
-                      className="flex items-center"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.9 + index * 0.1, duration: 0.4 }}
-                    >
-                      <span className="w-1 h-1 bg-gold rounded-full mr-3"></span>
-                      {qual}
-                    </motion.li>
-                  )
-                )}
-              </ul>
-            </motion.div>
-          </motion.div>
-
-          {/* Timeline */}
-          <motion.div variants={timelineVariants}>
-            <div className="relative">
-              {/* Timeline line */}
+            {milestones.map((milestone, index) => (
               <motion.div
-                className="absolute left-8 top-0 bottom-0 w-0.5 bg-gold"
-                initial={{ scaleY: 0 }}
-                whileInView={{ scaleY: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 1.2, ease: "easeOut" }}
-                style={{ transformOrigin: "top" }}
-              ></motion.div>
-
-              {milestones.map((milestone, index) => (
-                <motion.div
-                  key={index}
-                  className="relative flex items-start mb-8"
-                  variants={milestoneVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.8 + index * 0.2 }}
-                >
-                  {/* Timeline dot */}
-                  <motion.div
-                    className="w-16 h-16 bg-gold rounded-full flex items-center justify-center relative z-10"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <milestone.icon className="w-8 h-8 text-white" />
-                  </motion.div>
-
-                  {/* Content */}
-                  <motion.div
-                    className="ml-8 flex-1"
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 1 + index * 0.2, duration: 0.6 }}
-                  >
-                    <motion.div
-                      className="bg-light rounded-lg p-6 shadow-medium"
-                      whileHover={{
-                        scale: 1.02,
-                        boxShadow:
-                          "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                      }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <div className="text-gold font-bold text-xl mb-2">
-                        {milestone.year}
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                        {milestone.title}
-                      </h3>
-                      <p className="text-gray-600">{milestone.description}</p>
-                    </motion.div>
-                  </motion.div>
-                </motion.div>
-              ))}
-
-              {/* Additional milestone for expansion */}
-              <motion.div
-                className="relative flex items-start"
+                key={index}
+                className="relative flex items-start mb-8"
                 variants={milestoneVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ delay: 1.2 }}
+                transition={{ delay: 0.8 + index * 0.2 }}
               >
+                {/* Timeline dot */}
                 <motion.div
-                  className="w-16 h-16 bg-primary rounded-full flex items-center justify-center relative z-10"
+                  className="w-16 h-16 bg-gold rounded-full flex items-center justify-center relative z-10"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Award className="w-8 h-8 text-white" />
+                  <milestone.icon className="w-8 h-8 text-white" />
                 </motion.div>
+
+                {/* Content */}
                 <motion.div
                   className="ml-8 flex-1"
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 1.4, duration: 0.6 }}
+                  transition={{ delay: 1 + index * 0.2, duration: 0.6 }}
                 >
                   <motion.div
-                    className="bg-light rounded-lg p-6 shadow-medium"
+                    className="bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-medium"
                     whileHover={{
                       scale: 1.02,
                       boxShadow:
@@ -238,21 +148,64 @@ export default function History() {
                     }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <div className="text-primary font-bold text-xl mb-2">
-                      {t("history.timeline.present")}
+                    <div className="text-gold font-bold text-xl mb-2">
+                      {milestone.year}
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {t("history.timeline.continuous")}
+                      {milestone.title}
                     </h3>
-                    <p className="text-gray-600">
-                      {t("history.timeline.expandedDescription")}
-                    </p>
+                    <p className="text-gray-700">{milestone.description}</p>
                   </motion.div>
                 </motion.div>
               </motion.div>
-            </div>
-          </motion.div>
-        </div>
+            ))}
+
+            {/* Additional milestone for expansion */}
+            <motion.div
+              className="relative flex items-start"
+              variants={milestoneVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ delay: 1.2 }}
+            >
+              <motion.div
+                className="w-16 h-16 bg-primary rounded-full flex items-center justify-center relative z-10"
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Award className="w-8 h-8 text-white" />
+              </motion.div>
+              <motion.div
+                className="ml-8 flex-1"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 1.4, duration: 0.6 }}
+              >
+                <motion.div
+                  className="bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-medium"
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow:
+                      "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                  }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="text-primary font-bold text-xl mb-2">
+                    {t("history.timeline.present")}
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {t("history.timeline.continuous")}
+                  </h3>
+                  <p className="text-gray-700">
+                    {t("history.timeline.expandedDescription")}
+                  </p>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </motion.section>
   );
