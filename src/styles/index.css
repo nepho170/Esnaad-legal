@@ -121,7 +121,7 @@ body {
 
 /* Responsive parallax background */
 .parallax-bg {
-  background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
