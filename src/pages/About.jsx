@@ -16,25 +16,11 @@ import {
   Star,
 } from "lucide-react";
 import img from "/images/history-section.png";
-import { useState, useEffect } from "react";
 
 export default function About() {
   const { t, i18n } = useTranslation();
   const { lng } = useParams();
   const currentLang = i18n.language || "en";
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
 
   // const teamCredentials = [
   //   {
@@ -186,40 +172,13 @@ export default function About() {
             </div>
           </div>
         </section>
-
-        {/* Team Credentials */}
-        {/* <section className="mb-20">
-          <h2 className="text-3xl font-heading font-bold text-primary mb-8 text-center">
-            {t("about.team.title")}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {teamCredentials.map((credential, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg p-6 shadow-medium"
-              >
-                <div className="flex items-start">
-                  <div className="w-10 h-10 bg-teal/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <Briefcase className="w-5 h-5 text-teal" />
-                  </div>
-                  <div>
-                    <p className="text-gray-800 font-medium">
-                      {t(credential.titleKey)}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section> */}
       </div>
 
       {/* Why Choose Esnaad */}
       <section
-        className="relative py-20 w-full"
+        className="relative py-20 w-full parallax-bg"
         style={{
           backgroundImage: `url(${img})`,
-          backgroundAttachment: isMobile ? "scroll" : "fixed",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

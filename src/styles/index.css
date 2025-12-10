@@ -48,6 +48,20 @@ body::-webkit-scrollbar-thumb {
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
 }
 
+/* Responsive parallax background */
+.parallax-bg {
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+@media (max-width: 767px) {
+  .parallax-bg {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
 :root {
   --color-primary: #8b4513; /* Saddle brown */
   --color-secondary: #d2691e; /* Chocolate */

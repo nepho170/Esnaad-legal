@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Calendar, User, Award } from "lucide-react";
 import { motion } from "framer-motion";
@@ -6,19 +6,6 @@ import img from "/images/history-section.png";
 
 export default function History() {
   const { t } = useTranslation();
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
 
   const milestones = [
     {
@@ -91,10 +78,9 @@ export default function History() {
 
   return (
     <motion.section
-      className="pt-20 pb-0 bg-white relative min-h-screen"
+      className="py-20 bg-white relative parallax-bg"
       style={{
         backgroundImage: `url(${img})`,
-        backgroundAttachment: isMobile ? "scroll" : "fixed",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
