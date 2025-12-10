@@ -4,23 +4,30 @@
     <meta charset="utf-8">
     <title>Esnaad Legal</title>
     <script type="text/javascript">
-      // Redirect all 404s to index.html for SPA routing
-      var l = window.location;
-      var basePath = '/Esnaad-legal';
-
-      // Extract the path after the base
-      var path = l.pathname.replace(basePath, '') || '/';
-
-      // Redirect to index.html with the path as a query parameter
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        basePath + '/?path=' + encodeURIComponent(path) +
-        (l.search ? '&search=' + encodeURIComponent(l.search.slice(1)) : '') +
-        l.hash
-      );
+      // GitHub Pages SPA redirect for client-side routing
+      // This handles 404s by redirecting to index.html
+      (function() {
+        var pathSegmentsToKeep = 1; // For /Esnaad-legal/ base path
+        
+        var l = window.location;
+        var pathArray = l.pathname.split('/').filter(function(segment) {
+          return segment;
+        });
+        
+        // Build the redirect URL
+        var basePath = '/' + pathArray.slice(0, pathSegmentsToKeep).join('/');
+        var route = '/' + pathArray.slice(pathSegmentsToKeep).join('/');
+        
+        // Redirect to index.html with encoded path
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          basePath + '/?p=' + encodeURIComponent(route) +
+          (l.search ? '&q=' + encodeURIComponent(l.search.slice(1)) : '') +
+          l.hash
+        );
+      })();
     </script>
   </head>
   <body>
-    <p>Redirecting...</p>
   </body>
 </html>
