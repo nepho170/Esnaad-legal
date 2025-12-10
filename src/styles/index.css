@@ -124,4 +124,22 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+/* Fix for high DPI mobile screens */
+@media only screen and (max-width: 768px) {
+  .parallax-bg {
+    background-size: 100% auto;
+    background-position: center top;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .parallax-bg {
+    background-size: auto 100%;
+    background-position: center center;
+  }
 }
