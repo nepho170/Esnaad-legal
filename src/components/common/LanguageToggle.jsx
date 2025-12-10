@@ -14,10 +14,10 @@ export default function LanguageToggle() {
     localStorage.setItem("esnaad:lang", newLang);
     document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = newLang === "ar" ? "ar" : "en";
-    
+
     // Get current path without language prefix
     const pathWithoutLang = location.pathname.replace(/^\/(en|ar)/, "");
-    
+
     // Navigate to the new language path
     navigate(`/${newLang}${pathWithoutLang}`, { replace: true });
   };

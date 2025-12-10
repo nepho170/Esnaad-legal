@@ -118,3 +118,10 @@ body {
 .bg-warm-gradient {
   background: linear-gradient(135deg, #f7f3f0 0%, #ede5de 50%, #d4c0ae 100%);
 }
+
+/* Responsive parallax background */
+.parallax-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

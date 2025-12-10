@@ -81,7 +81,6 @@ export default function History() {
       className="py-20 bg-white relative parallax-bg"
       style={{
         backgroundImage: `url(${img})`,
-        backgroundPosition: "center",
       }}
       initial="hidden"
       whileInView="visible"
